@@ -824,7 +824,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     
         private string _containerExtension = "mp4";
     
-        private string _outputArguments = "-c:v h264_nvenc -vsync 0 -2pass 1 -bf:v 0 -qp 13 -preset medium -b:v 20M -rc:v cbr";
+        private string _outputArguments = "-c:v hevc_nvenc -pix_fmt x2rgb10le -color_range full -tune hq -preset p3 -rc vbr -cq 16 -rc-lookahead 56 -temporal-aq 1 -qmin 0 -qmax 10";
     
         public VideoWriterFfmpeg()
         {
@@ -1024,9 +1024,9 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     
         private string _rigName;
     
-        private CameraControllerSpinnakerCamera _triggeredCameraController1;
+        private CameraControllerSpinnakerCamera _triggeredCameraController0;
     
-        private CameraControllerSpinnakerCamera _triggeredCameraController2;
+        private CameraControllerSpinnakerCamera _triggeredCameraController1;
     
         private HarpBehavior _harpBehavior = new HarpBehavior();
     
@@ -1041,8 +1041,8 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             _version = other._version;
             _computerName = other._computerName;
             _rigName = other._rigName;
+            _triggeredCameraController0 = other._triggeredCameraController0;
             _triggeredCameraController1 = other._triggeredCameraController1;
-            _triggeredCameraController2 = other._triggeredCameraController2;
             _harpBehavior = other._harpBehavior;
             _harpClockGenerator = other._harpClockGenerator;
         }
@@ -1098,8 +1098,27 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
         /// Required camera controller to triggered cameras. Will use Camera0 register as a trigger.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("triggered_camera_controller_1", Required=Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonPropertyAttribute("triggered_camera_controller_0", Required=Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DescriptionAttribute("Required camera controller to triggered cameras. Will use Camera0 register as a t" +
+            "rigger.")]
+        public CameraControllerSpinnakerCamera TriggeredCameraController0
+        {
+            get
+            {
+                return _triggeredCameraController0;
+            }
+            set
+            {
+                _triggeredCameraController0 = value;
+            }
+        }
+    
+        /// <summary>
+        /// Optional camera controller to triggered cameras. Will use Camera1 register as a trigger.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("triggered_camera_controller_1")]
+        [System.ComponentModel.DescriptionAttribute("Optional camera controller to triggered cameras. Will use Camera1 register as a t" +
             "rigger.")]
         public CameraControllerSpinnakerCamera TriggeredCameraController1
         {
@@ -1110,25 +1129,6 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             set
             {
                 _triggeredCameraController1 = value;
-            }
-        }
-    
-        /// <summary>
-        /// Optional camera controller to triggered cameras. Will use Camera1 register as a trigger.
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("triggered_camera_controller_2")]
-        [System.ComponentModel.DescriptionAttribute("Optional camera controller to triggered cameras. Will use Camera1 register as a t" +
-            "rigger.")]
-        public CameraControllerSpinnakerCamera TriggeredCameraController2
-        {
-            get
-            {
-                return _triggeredCameraController2;
-            }
-            set
-            {
-                _triggeredCameraController2 = value;
             }
         }
     
@@ -1184,8 +1184,8 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             stringBuilder.Append("version = " + _version + ", ");
             stringBuilder.Append("computer_name = " + _computerName + ", ");
             stringBuilder.Append("rig_name = " + _rigName + ", ");
+            stringBuilder.Append("triggered_camera_controller_0 = " + _triggeredCameraController0 + ", ");
             stringBuilder.Append("triggered_camera_controller_1 = " + _triggeredCameraController1 + ", ");
-            stringBuilder.Append("triggered_camera_controller_2 = " + _triggeredCameraController2 + ", ");
             stringBuilder.Append("harp_behavior = " + _harpBehavior + ", ");
             stringBuilder.Append("harp_clock_generator = " + _harpClockGenerator);
             return true;

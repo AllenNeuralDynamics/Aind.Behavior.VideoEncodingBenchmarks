@@ -320,7 +320,7 @@
           "type": "string"
         },
         "output_arguments": {
-          "default": "-c:v h264_nvenc -vsync 0 -2pass 1 -bf:v 0 -qp 13 -preset medium -b:v 20M -rc:v cbr",
+          "default": "-c:v hevc_nvenc -pix_fmt x2rgb10le -color_range full -tune hq -preset p3 -rc vbr -cq 16 -rc-lookahead 56 -temporal-aq 1 -qmin 0 -qmax 10",
           "description": "Output arguments",
           "title": "Output Arguments",
           "type": "string"
@@ -378,7 +378,7 @@
       "title": "Rig Name",
       "type": "string"
     },
-    "triggered_camera_controller_1": {
+    "triggered_camera_controller_0": {
       "description": "Required camera controller to triggered cameras. Will use Camera0 register as a trigger.",
       "oneOf": [
         {
@@ -389,7 +389,7 @@
         }
       ]
     },
-    "triggered_camera_controller_2": {
+    "triggered_camera_controller_1": {
       "default": null,
       "description": "Optional camera controller to triggered cameras. Will use Camera1 register as a trigger.",
       "oneOf": [
@@ -420,7 +420,7 @@
   },
   "required": [
     "rig_name",
-    "triggered_camera_controller_1",
+    "triggered_camera_controller_0",
     "harp_behavior",
     "harp_clock_generator"
   ],
