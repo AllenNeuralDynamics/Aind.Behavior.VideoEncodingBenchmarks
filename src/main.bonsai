@@ -883,6 +883,242 @@
                 </Edges>
               </Workflow>
             </Expression>
+            <Expression xsi:type="rx:Defer">
+              <Name>Other</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Value" DisplayName="Modality" />
+                  </Expression>
+                  <Expression xsi:type="PropertySource" TypeArguments="p6:AppendModalitySuffix,sys:Nullable(p6:Modality)">
+                    <MemberName>Modality</MemberName>
+                    <Value>Other</Value>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Take">
+                      <rx:Count>1</rx:Count>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="rx:AsyncSubject">
+                    <Name>Modality</Name>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>ConfigSchemaLogging</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>SubjectSchema</Name>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p1:SerializeToJson" />
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>Modality</Name>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="Modality" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:LogDataSchema.bonsai">
+                          <SubjectName>LoggingRootPath</SubjectName>
+                          <Modality xsi:nil="true" />
+                          <LogName>session_output</LogName>
+                          <DeviceName>Config</DeviceName>
+                          <Extension>json</Extension>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>TaskLogicSchema</Name>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p3:SerializeToJson" />
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>Modality</Name>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="Modality" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:LogDataSchema.bonsai">
+                          <SubjectName>LoggingRootPath</SubjectName>
+                          <Modality xsi:nil="true" />
+                          <LogName>tasklogic_output</LogName>
+                          <DeviceName>Config</DeviceName>
+                          <Extension>json</Extension>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>RigSchema</Name>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p2:SerializeToJson" />
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>Modality</Name>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="Modality" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:LogDataSchema.bonsai">
+                          <SubjectName>LoggingRootPath</SubjectName>
+                          <Modality xsi:nil="true" />
+                          <LogName>rig_output</LogName>
+                          <DeviceName>Config</DeviceName>
+                          <Extension>json</Extension>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>RawRigSchema</Name>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>Modality</Name>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="Modality" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:LogAllText.bonsai">
+                          <SubjectName>LoggingRootPath</SubjectName>
+                          <Modality xsi:nil="true" />
+                          <LogName>rig_input</LogName>
+                          <DeviceName>Config</DeviceName>
+                          <Extension>json</Extension>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>RawSessionSchema</Name>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>Modality</Name>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="Modality" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:LogAllText.bonsai">
+                          <SubjectName>LoggingRootPath</SubjectName>
+                          <Modality xsi:nil="true" />
+                          <LogName>session_input</LogName>
+                          <DeviceName>Config</DeviceName>
+                          <Extension>json</Extension>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>RawTaskLogicSchema</Name>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>Modality</Name>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="Modality" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:LogAllText.bonsai">
+                          <SubjectName>LoggingRootPath</SubjectName>
+                          <Modality xsi:nil="true" />
+                          <LogName>tasklogic_input</LogName>
+                          <DeviceName>Config</DeviceName>
+                          <Extension>json</Extension>
+                        </Expression>
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="4" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                        <Edge From="3" To="4" Label="Source2" />
+                        <Edge From="5" To="6" Label="Source1" />
+                        <Edge From="6" To="9" Label="Source1" />
+                        <Edge From="7" To="8" Label="Source1" />
+                        <Edge From="8" To="9" Label="Source2" />
+                        <Edge From="10" To="11" Label="Source1" />
+                        <Edge From="11" To="14" Label="Source1" />
+                        <Edge From="12" To="13" Label="Source1" />
+                        <Edge From="13" To="14" Label="Source2" />
+                        <Edge From="15" To="18" Label="Source1" />
+                        <Edge From="16" To="17" Label="Source1" />
+                        <Edge From="17" To="18" Label="Source2" />
+                        <Edge From="19" To="22" Label="Source1" />
+                        <Edge From="20" To="21" Label="Source1" />
+                        <Edge From="21" To="22" Label="Source2" />
+                        <Edge From="23" To="26" Label="Source1" />
+                        <Edge From="24" To="25" Label="Source1" />
+                        <Edge From="25" To="26" Label="Source2" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>Logs</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>EndExperiment</Name>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="StringProperty">
+                            <Value>ExperimentCompleted</Value>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p6:CreateSoftwareEvent">
+                            <p6:EventName>SoftwareEvent</p6:EventName>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>HarpTimestampSource</Name>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:WithLatestFrom" />
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="harp:CreateTimestamped" />
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p6:TimestampSoftwareEvent" />
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p6:SerializeToJson" />
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>Modality</Name>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="Modality" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:LogDataSchema.bonsai">
+                          <SubjectName>LoggingRootPath</SubjectName>
+                          <Modality xsi:nil="true" />
+                          <LogName>endsession</LogName>
+                          <DeviceName />
+                          <Extension>json</Extension>
+                        </Expression>
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="4" Label="Source1" />
+                        <Edge From="3" To="4" Label="Source2" />
+                        <Edge From="4" To="5" Label="Source1" />
+                        <Edge From="5" To="6" Label="Source1" />
+                        <Edge From="6" To="7" Label="Source1" />
+                        <Edge From="7" To="10" Label="Source1" />
+                        <Edge From="8" To="9" Label="Source1" />
+                        <Edge From="9" To="10" Label="Source2" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
           </Nodes>
           <Edges />
         </Workflow>
