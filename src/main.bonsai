@@ -9,9 +9,11 @@
                  xmlns:beh="clr-namespace:Harp.Behavior;assembly=Harp.Behavior"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
+                 xmlns:p5="clr-namespace:AllenNeuralDynamics.Core;assembly=AllenNeuralDynamics.Core"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
-                 xmlns:p5="clr-namespace:AllenNeuralDynamics.Core.Logging;assembly=AllenNeuralDynamics.Core"
-                 xmlns:p6="clr-namespace:AllenNeuralDynamics.HarpUtils;assembly=AllenNeuralDynamics.HarpUtils"
+                 xmlns:p6="clr-namespace:AllenNeuralDynamics.Core.Logging;assembly=AllenNeuralDynamics.Core"
+                 xmlns:p7="clr-namespace:AllenNeuralDynamics.HarpUtils;assembly=AllenNeuralDynamics.HarpUtils"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -379,12 +381,60 @@
               <JitterThreshold>0.0005</JitterThreshold>
               <SnoozeTime>PT10S</SnoozeTime>
             </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Repository</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p4:IsRepositoryClean">
+                <p4:IgnoreUntracked>false</p4:IgnoreUntracked>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="BitwiseNot" />
+            <Expression xsi:type="SubscribeSubject">
+              <Name>SubjectSchema</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>AllowDirtyRepo</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Zip" />
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Name>AllowDirty?</scr:Name>
+              <scr:Expression>Item2 ? False : Item1</scr:Expression>
+            </Expression>
+            <Expression xsi:type="rx:Condition">
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p5:ThrowException">
+                <p5:Message>Repository is not clean! Please discard all local changes.</p5:Message>
+              </Combinator>
+            </Expression>
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
             <Edge From="1" To="2" Label="Source1" />
             <Edge From="3" To="4" Label="Source1" />
             <Edge From="4" To="5" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="8" To="11" Label="Source1" />
+            <Edge From="9" To="10" Label="Source1" />
+            <Edge From="10" To="11" Label="Source2" />
+            <Edge From="11" To="12" Label="Source1" />
+            <Edge From="12" To="13" Label="Source1" />
+            <Edge From="13" To="14" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -425,7 +475,7 @@
                   <Expression xsi:type="ExternalizedMapping">
                     <Property Name="Value" DisplayName="Modality" />
                   </Expression>
-                  <Expression xsi:type="PropertySource" TypeArguments="p5:AppendModalitySuffix,sys:Nullable(p5:Modality)">
+                  <Expression xsi:type="PropertySource" TypeArguments="p6:AppendModalitySuffix,sys:Nullable(p6:Modality)">
                     <MemberName>Modality</MemberName>
                     <Value>Behavior</Value>
                   </Expression>
@@ -554,9 +604,9 @@
                           <Combinator xsi:type="rx:WithLatestFrom" />
                         </Expression>
                         <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="p6:ModifyMessage">
-                            <p6:Address xsi:nil="true" />
-                            <p6:MessageTypeModified xsi:nil="true" />
+                          <Combinator xsi:type="p7:ModifyMessage">
+                            <p7:Address xsi:nil="true" />
+                            <p7:MessageTypeModified xsi:nil="true" />
                           </Combinator>
                         </Expression>
                         <Expression xsi:type="Combinator">
@@ -601,9 +651,9 @@
                           <Combinator xsi:type="rx:WithLatestFrom" />
                         </Expression>
                         <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="p6:ModifyMessage">
-                            <p6:Address xsi:nil="true" />
-                            <p6:MessageTypeModified xsi:nil="true" />
+                          <Combinator xsi:type="p7:ModifyMessage">
+                            <p7:Address xsi:nil="true" />
+                            <p7:MessageTypeModified xsi:nil="true" />
                           </Combinator>
                         </Expression>
                         <Expression xsi:type="Combinator">
@@ -667,7 +717,7 @@
                     <Name>SoftwareEvents</Name>
                     <Workflow>
                       <Nodes>
-                        <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p5:SoftwareEvent">
+                        <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p6:SoftwareEvent">
                           <rx:Name>SoftwareEvent</rx:Name>
                         </Expression>
                         <Expression xsi:type="SubscribeSubject">
@@ -693,7 +743,7 @@
                           <Combinator xsi:type="harp:CreateTimestamped" />
                         </Expression>
                         <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="p5:TimestampSoftwareEvent" />
+                          <Combinator xsi:type="p6:TimestampSoftwareEvent" />
                         </Expression>
                         <Expression xsi:type="SubscribeSubject">
                           <Name>Modality</Name>
@@ -720,8 +770,8 @@
                                 <Selector>Head</Selector>
                               </Expression>
                               <Expression xsi:type="Combinator">
-                                <Combinator xsi:type="p5:CreateSoftwareEvent">
-                                  <p5:EventName>RepositoryStatus</p5:EventName>
+                                <Combinator xsi:type="p6:CreateSoftwareEvent">
+                                  <p6:EventName>RepositoryStatus</p6:EventName>
                                 </Combinator>
                               </Expression>
                               <Expression xsi:type="MulticastSubject">
@@ -736,8 +786,8 @@
                                 </Combinator>
                               </Expression>
                               <Expression xsi:type="Combinator">
-                                <Combinator xsi:type="p5:CreateSoftwareEvent">
-                                  <p5:EventName>IsRepositoryClean</p5:EventName>
+                                <Combinator xsi:type="p6:CreateSoftwareEvent">
+                                  <p6:EventName>IsRepositoryClean</p6:EventName>
                                 </Combinator>
                               </Expression>
                               <Expression xsi:type="MulticastSubject">
