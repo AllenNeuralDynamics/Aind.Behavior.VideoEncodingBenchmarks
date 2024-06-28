@@ -88,4 +88,3 @@ def export_model_diagram(model: BaseModel, root: str = "_static") -> None:
 
 
 _diagram_root = "_static"
-export_model_diagram(aind_behavior_video_encoding_benchmarks.task_logic.AindVideoEncodingBenchmarksTaskLogic, _diagram_root)

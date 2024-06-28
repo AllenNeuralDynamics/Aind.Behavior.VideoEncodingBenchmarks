@@ -1,5 +1,5 @@
 Welcome to the AIND Video Encoding Benchmarks project documentation!
-=========================================================
+========================================================================
 
 .. include:: ../README.md
    :parser: myst_parser.sphinx_
