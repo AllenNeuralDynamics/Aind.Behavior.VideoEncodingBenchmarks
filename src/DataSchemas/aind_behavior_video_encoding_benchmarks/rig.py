@@ -13,7 +13,7 @@ __version__ = "0.1.0"
 
 class AindVideoEncodingBenchmarksRig(AindBehaviorRigModel):
     version: Literal[__version__] = __version__
-    triggered_camera_controller_1: rig.CameraController[rig.SpinnakerCamera] = Field(
+    triggered_camera_controller_1: Optional[rig.CameraController[rig.SpinnakerCamera]] = Field(
         ..., description="Required camera controller to triggered cameras. Will use Camera0 register as a trigger."
     )
     triggered_camera_controller_2: Optional[rig.CameraController[rig.SpinnakerCamera]] = Field(

@@ -1,0 +1,429 @@
+{
+  "definitions": {
+    "BaseModel": {
+      "properties": {},
+      "title": "BaseModel",
+      "type": "object"
+    },
+    "CameraController_SpinnakerCamera_": {
+      "properties": {
+        "device_type": {
+          "const": "CameraController",
+          "default": "CameraController",
+          "title": "Device Type",
+          "type": "string"
+        },
+        "additional_settings": {
+          "default": null,
+          "description": "Additional settings",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BaseModel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "calibration": {
+          "default": null,
+          "description": "Calibration",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BaseModel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cameras": {
+          "additionalProperties": {
+            "$ref": "#/definitions/SpinnakerCamera"
+          },
+          "description": "Cameras to be instantiated",
+          "title": "Cameras",
+          "type": "object"
+        },
+        "frame_rate": {
+          "default": 30,
+          "description": "Frame rate of the trigger to all cameras",
+          "oneOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Frame Rate"
+        }
+      },
+      "required": [
+        "cameras"
+      ],
+      "title": "CameraController[SpinnakerCamera]",
+      "type": "object"
+    },
+    "HarpBehavior": {
+      "properties": {
+        "device_type": {
+          "const": "behavior",
+          "default": "behavior",
+          "title": "Device Type",
+          "type": "string"
+        },
+        "additional_settings": {
+          "default": null,
+          "description": "Additional settings",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BaseModel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "calibration": {
+          "default": null,
+          "description": "Calibration",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BaseModel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "who_am_i": {
+          "const": 1216,
+          "default": 1216,
+          "title": "Who Am I",
+          "type": "integer"
+        },
+        "serial_number": {
+          "default": null,
+          "description": "Device serial number",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Serial Number"
+        },
+        "port_name": {
+          "description": "Device port name",
+          "title": "Port Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "port_name"
+      ],
+      "title": "HarpBehavior",
+      "type": "object"
+    },
+    "HarpClockGenerator": {
+      "properties": {
+        "device_type": {
+          "const": "clockgenerator",
+          "default": "clockgenerator",
+          "title": "Device Type",
+          "type": "string"
+        },
+        "additional_settings": {
+          "default": null,
+          "description": "Additional settings",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BaseModel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "calibration": {
+          "default": null,
+          "description": "Calibration",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BaseModel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "who_am_i": {
+          "const": 1158,
+          "default": 1158,
+          "title": "Who Am I",
+          "type": "integer"
+        },
+        "serial_number": {
+          "default": null,
+          "description": "Device serial number",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Serial Number"
+        },
+        "port_name": {
+          "description": "Device port name",
+          "title": "Port Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "port_name"
+      ],
+      "title": "HarpClockGenerator",
+      "type": "object"
+    },
+    "SpinnakerCamera": {
+      "properties": {
+        "device_type": {
+          "const": "SpinnakerCamera",
+          "default": "SpinnakerCamera",
+          "description": "Device type",
+          "title": "Device Type",
+          "type": "string"
+        },
+        "additional_settings": {
+          "default": null,
+          "description": "Additional settings",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BaseModel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "calibration": {
+          "default": null,
+          "description": "Calibration",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/BaseModel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "serial_number": {
+          "description": "Camera serial number",
+          "title": "Serial Number",
+          "type": "string"
+        },
+        "binning": {
+          "default": 1,
+          "description": "Binning",
+          "minimum": 1,
+          "title": "Binning",
+          "type": "integer"
+        },
+        "color_processing": {
+          "default": "Default",
+          "description": "Color processing",
+          "enum": [
+            "Default",
+            "NoColorProcessing"
+          ],
+          "title": "Color Processing",
+          "type": "string"
+        },
+        "exposure": {
+          "default": 1000,
+          "description": "Exposure time",
+          "minimum": 100,
+          "title": "Exposure",
+          "type": "integer"
+        },
+        "gain": {
+          "default": 0,
+          "description": "Gain",
+          "minimum": 0.0,
+          "title": "Gain",
+          "type": "number"
+        },
+        "video_writer": {
+          "default": null,
+          "description": "Video writer. If not provided, no video will be saved.",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VideoWriter"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "serial_number"
+      ],
+      "title": "SpinnakerCamera",
+      "type": "object"
+    },
+    "VideoWriter": {
+      "discriminator": {
+        "mapping": {
+          "FFMPEG": "#/definitions/VideoWriterFfmpeg",
+          "OPENCV": "#/definitions/VideoWriterOpenCv"
+        },
+        "propertyName": "video_writer_type"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/definitions/VideoWriterFfmpeg"
+        },
+        {
+          "$ref": "#/definitions/VideoWriterOpenCv"
+        }
+      ],
+      "title": "VideoWriter"
+    },
+    "VideoWriterFfmpeg": {
+      "properties": {
+        "video_writer_type": {
+          "const": "FFMPEG",
+          "default": "FFMPEG",
+          "title": "Video Writer Type",
+          "type": "string"
+        },
+        "frame_rate": {
+          "default": 30,
+          "description": "Encoding frame rate",
+          "minimum": 0,
+          "title": "Frame Rate",
+          "type": "integer"
+        },
+        "container_extension": {
+          "default": "mp4",
+          "description": "Container extension",
+          "title": "Container Extension",
+          "type": "string"
+        },
+        "output_arguments": {
+          "default": "-c:v h264_nvenc -vsync 0 -2pass 1 -bf:v 0 -qp 13 -preset medium -b:v 20M -rc:v cbr",
+          "description": "Output arguments",
+          "title": "Output Arguments",
+          "type": "string"
+        }
+      },
+      "title": "VideoWriterFfmpeg",
+      "type": "object"
+    },
+    "VideoWriterOpenCv": {
+      "properties": {
+        "video_writer_type": {
+          "const": "OPENCV",
+          "default": "OPENCV",
+          "title": "Video Writer Type",
+          "type": "string"
+        },
+        "frame_rate": {
+          "default": 30,
+          "description": "Encoding frame rate",
+          "minimum": 0,
+          "title": "Frame Rate",
+          "type": "integer"
+        },
+        "container_extension": {
+          "default": "avi",
+          "description": "Container extension",
+          "title": "Container Extension",
+          "type": "string"
+        },
+        "four_cc": {
+          "default": "FMP4",
+          "description": "Four character code",
+          "title": "Four Cc",
+          "type": "string"
+        }
+      },
+      "title": "VideoWriterOpenCv",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "version": {
+      "const": "0.1.0",
+      "default": "0.1.0",
+      "title": "Version",
+      "type": "string"
+    },
+    "computer_name": {
+      "description": "Computer name",
+      "title": "Computer Name",
+      "type": "string"
+    },
+    "rig_name": {
+      "description": "Rig name",
+      "title": "Rig Name",
+      "type": "string"
+    },
+    "triggered_camera_controller_1": {
+      "description": "Required camera controller to triggered cameras. Will use Camera0 register as a trigger.",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/CameraController_SpinnakerCamera_"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "triggered_camera_controller_2": {
+      "default": null,
+      "description": "Optional camera controller to triggered cameras. Will use Camera1 register as a trigger.",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/CameraController_SpinnakerCamera_"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "harp_behavior": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/HarpBehavior"
+        }
+      ],
+      "description": "Harp behavior board. Will be the source of triggers for the two camera controllers."
+    },
+    "harp_clock_generator": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/HarpClockGenerator"
+        }
+      ],
+      "description": "Harp clock generator."
+    }
+  },
+  "required": [
+    "rig_name",
+    "triggered_camera_controller_1",
+    "harp_behavior",
+    "harp_clock_generator"
+  ],
+  "title": "AindVideoEncodingBenchmarksRig",
+  "type": "object"
+}

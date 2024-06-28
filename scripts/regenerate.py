@@ -18,8 +18,8 @@ NAMESPACE_PREFIX = "AindVideoEncodingBenchmarksSchemas"
 def main():
 
     models = [
-        aind_behavior_video_encoding_benchmarks.task_logic.AindVrForagingTaskLogic,
-        aind_behavior_video_encoding_benchmarks.rig.AindVrForagingRig,
+        aind_behavior_video_encoding_benchmarks.task_logic.AindVideoEncodingBenchmarksTaskLogic,
+        aind_behavior_video_encoding_benchmarks.rig.AindVideoEncodingBenchmarksRig,
         AindBehaviorSessionModel,
     ]
 
