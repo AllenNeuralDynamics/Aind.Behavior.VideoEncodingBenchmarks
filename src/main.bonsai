@@ -8,10 +8,10 @@
                  xmlns:p4="clr-namespace:AllenNeuralDynamics.VersionControl;assembly=AllenNeuralDynamics.VersionControl"
                  xmlns:beh="clr-namespace:Harp.Behavior;assembly=Harp.Behavior"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
-                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:p5="clr-namespace:AllenNeuralDynamics.Core;assembly=AllenNeuralDynamics.Core"
                  xmlns:p6="clr-namespace:AllenNeuralDynamics.Core.Logging;assembly=AllenNeuralDynamics.Core"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:p7="clr-namespace:AllenNeuralDynamics.HarpUtils;assembly=AllenNeuralDynamics.HarpUtils"
                  xmlns:gui="clr-namespace:Bonsai.Gui;assembly=Bonsai.Gui"
                  xmlns="https://bonsai-rx.org/2018/workflow">
@@ -239,7 +239,7 @@
               <Name>Cameras</Name>
               <Workflow>
                 <Nodes>
-                  <Expression xsi:type="rx:ReplaySubject" TypeArguments="sys:Boolean">
+                  <Expression xsi:type="rx:ReplaySubject" TypeArguments="beh:CameraOutputs">
                     <rx:Name>ControllersInitialized</rx:Name>
                     <rx:BufferSize xsi:nil="true" />
                   </Expression>

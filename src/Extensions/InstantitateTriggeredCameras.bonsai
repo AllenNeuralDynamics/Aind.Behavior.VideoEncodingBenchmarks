@@ -380,6 +380,15 @@
                 </Edges>
               </Workflow>
             </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>SelectedCamera</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item2</Selector>
+            </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Take">
                 <rx:Count>1</rx:Count>
@@ -450,9 +459,12 @@
             <Edge From="54" To="55" Label="Source1" />
             <Edge From="55" To="56" Label="Source2" />
             <Edge From="56" To="57" Label="Source1" />
-            <Edge From="57" To="58" Label="Source1" />
-            <Edge From="58" To="59" Label="Source1" />
+            <Edge From="57" To="59" Label="Source1" />
+            <Edge From="58" To="59" Label="Source2" />
             <Edge From="59" To="60" Label="Source1" />
+            <Edge From="60" To="61" Label="Source1" />
+            <Edge From="61" To="62" Label="Source1" />
+            <Edge From="62" To="63" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
