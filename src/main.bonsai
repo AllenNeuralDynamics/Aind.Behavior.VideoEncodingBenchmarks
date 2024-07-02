@@ -114,11 +114,13 @@
               <PropertyMappings>
                 <Property Name="Subject" Selector="Subject" />
                 <Property Name="RootFolder" Selector="RootPath" />
+                <Property Name="Value" Selector="Date" />
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:GenerateRootLoggingPath.bonsai">
               <RootFolder>C:\data\</RootFolder>
               <Subject>672102</Subject>
+              <Value>0001-01-01T00:00:00.0000000+00:00</Value>
               <SubjectName>LoggingRootPath</SubjectName>
             </Expression>
             <Expression xsi:type="Combinator">
