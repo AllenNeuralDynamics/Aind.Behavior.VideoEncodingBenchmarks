@@ -70,7 +70,7 @@ class CustomLauncherCli(LauncherCli):
 class CustomLauncher(Launcher):
 
     def _get_experimenter(self) -> list[str]:
-        experimenters_input = str(input("Enter notes:"))
+        experimenters_input = str(input("Enter experimenter(s):"))
         split = re.split(
             r"[,\s]+", experimenters_input.strip()
         )  # Split using commas, spaces, and control characters as separators
@@ -95,7 +95,8 @@ class CustomLauncher(Launcher):
             session.notes = self._get_notes()
             session.experimenter = self._get_experimenter()
 
-            task_logic = AindVideoEncodingBenchmarksTaskLogic(task_parameters=AindVideoEncodingBenchmarksTaskParameters)
+            task_logic = AindVideoEncodingBenchmarksTaskLogic(
+                task_parameters=AindVideoEncodingBenchmarksTaskParameters())
             rig = self.prompt_rig_input()
             bonsai_visualizer_layout = None
 
