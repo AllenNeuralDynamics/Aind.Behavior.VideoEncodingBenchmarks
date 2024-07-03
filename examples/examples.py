@@ -30,7 +30,7 @@ def main(path_seed: str = "./local/{schema}.json"):
     video_writer = rig.VideoWriterFfmpeg(
         frame_rate=120,
         container_extension="mp4",
-        output_arguments="-c:v hevc_nvenc -pix_fmt x2rgb10le -color_range full -tune hq -preset p3 -rc vbr -cq 16 -rc-lookahead 56 -temporal-aq 1 -qmin 0 -qmax 10", # noqa: E501
+        output_arguments="-c:v hevc_nvenc -pix_fmt x2rgb10le -color_range full -tune hq -preset p3 -rc vbr -cq 16 -rc-lookahead 56 -temporal-aq 1 -qmin 0 -qmax 10",  # noqa: E501
     )
 
     this_rig = AindVideoEncodingBenchmarksRig(
