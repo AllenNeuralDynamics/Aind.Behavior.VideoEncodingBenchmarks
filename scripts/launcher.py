@@ -1,11 +1,15 @@
-import re
 import os
+import re
 from typing import Optional, Type
-from typing_extensions import override
-from aind_behavior_services.launcher import LauncherCli, Launcher, open_bonsai_process
+
+from aind_behavior_services.launcher import Launcher, LauncherCli, open_bonsai_process
 from aind_behavior_services.session import AindBehaviorSessionModel
 from aind_behavior_video_encoding_benchmarks.rig import AindVideoEncodingBenchmarksRig
-from aind_behavior_video_encoding_benchmarks.task_logic import AindVideoEncodingBenchmarksTaskLogic, AindVideoEncodingBenchmarksTaskParameters
+from aind_behavior_video_encoding_benchmarks.task_logic import (
+    AindVideoEncodingBenchmarksTaskLogic,
+    AindVideoEncodingBenchmarksTaskParameters,
+)
+from typing_extensions import override
 
 
 class CustomLauncherCli(LauncherCli):
@@ -67,8 +71,10 @@ class CustomLauncher(Launcher):
 
     def _get_experimenter(self) -> list[str]:
         experimenters_input = str(input("Enter notes:"))
-        split = re.split(r'[,\s]+', experimenters_input.strip())  # Split using commas, spaces, and control characters as separators
-        return split if split != [''] else []
+        split = re.split(
+            r"[,\s]+", experimenters_input.strip()
+        )  # Split using commas, spaces, and control characters as separators
+        return split if split != [""] else []
 
     def run(self):
         try:
@@ -84,13 +90,12 @@ class CustomLauncher(Launcher):
                 allow_dirty_repo=self._dev_mode or self.allow_dirty_repo,
                 skip_hardware_validation=self.skip_hardware_validation,
                 experiment_version="",  # Will be set later
-                experimenter=[]
+                experimenter=[],
             )
             session.notes = self._get_notes()
             session.experimenter = self._get_experimenter()
 
-            task_logic = AindVideoEncodingBenchmarksTaskLogic(
-                task_parameters=AindVideoEncodingBenchmarksTaskParameters)
+            task_logic = AindVideoEncodingBenchmarksTaskLogic(task_parameters=AindVideoEncodingBenchmarksTaskParameters)
             rig = self.prompt_rig_input()
             bonsai_visualizer_layout = None
 
@@ -112,10 +117,8 @@ class CustomLauncher(Launcher):
                 additional_properties=additional_properties,
                 layout=bonsai_visualizer_layout,
                 log_file_name=os.path.join(
-                    session.root_path,
-                    session.subject,
-                    f"{session.subject}_{session.date.strftime('%Y%m%dT%H%M%S')}"
-                    ),
+                    session.root_path, session.subject, f"{session.subject}_{session.date.strftime('%Y%m%dT%H%M%S')}"
+                ),
                 is_editor_mode=self.bonsai_is_editor_mode,
                 is_start_flag=self.bonsai_is_start_flag,
                 cwd=self._cwd,
