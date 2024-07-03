@@ -1600,21 +1600,21 @@
               <gui:Name>Controller0Visualization</gui:Name>
               <gui:Enabled>true</gui:Enabled>
               <gui:Visible>true</gui:Visible>
-              <gui:ColumnCount>3</gui:ColumnCount>
-              <gui:RowCount>1</gui:RowCount>
+              <gui:ColumnCount>1</gui:ColumnCount>
+              <gui:RowCount>3</gui:RowCount>
               <gui:ColumnStyles />
               <gui:RowStyles>
                 <gui:RowStyle>
                   <gui:SizeType>Percent</gui:SizeType>
-                  <gui:Height>0.05</gui:Height>
+                  <gui:Height>0.1</gui:Height>
                 </gui:RowStyle>
                 <gui:RowStyle>
                   <gui:SizeType>Percent</gui:SizeType>
-                  <gui:Height>0.8</gui:Height>
+                  <gui:Height>0.6</gui:Height>
                 </gui:RowStyle>
                 <gui:RowStyle>
                   <gui:SizeType>Percent</gui:SizeType>
-                  <gui:Height>0.15</gui:Height>
+                  <gui:Height>0.3</gui:Height>
                 </gui:RowStyle>
               </gui:RowStyles>
               <gui:CellSpans />
@@ -1799,24 +1799,24 @@
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="gui:TableLayoutPanelBuilder">
-              <gui:Name>Controller1Visualization</gui:Name>
+              <gui:Name>Controller0Visualization</gui:Name>
               <gui:Enabled>true</gui:Enabled>
               <gui:Visible>true</gui:Visible>
-              <gui:ColumnCount>3</gui:ColumnCount>
-              <gui:RowCount>1</gui:RowCount>
+              <gui:ColumnCount>1</gui:ColumnCount>
+              <gui:RowCount>3</gui:RowCount>
               <gui:ColumnStyles />
               <gui:RowStyles>
                 <gui:RowStyle>
                   <gui:SizeType>Percent</gui:SizeType>
-                  <gui:Height>0.05</gui:Height>
+                  <gui:Height>0.1</gui:Height>
                 </gui:RowStyle>
                 <gui:RowStyle>
                   <gui:SizeType>Percent</gui:SizeType>
-                  <gui:Height>0.8</gui:Height>
+                  <gui:Height>0.6</gui:Height>
                 </gui:RowStyle>
                 <gui:RowStyle>
                   <gui:SizeType>Percent</gui:SizeType>
-                  <gui:Height>0.15</gui:Height>
+                  <gui:Height>0.3</gui:Height>
                 </gui:RowStyle>
               </gui:RowStyles>
               <gui:CellSpans />
