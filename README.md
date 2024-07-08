@@ -36,6 +36,8 @@ This repository follows the project structure laid out in the [Aind.Behavior.Ser
 
 Deployment instructions can be found [here](https://github.com/AllenNeuralDynamics/Aind.Behavior.Services?tab=readme-ov-file#deployment).
 
+Specifically, Ffmpeg and CUDA support must be installed on the computer.
+
 ---
 
 ## Prerequisites
