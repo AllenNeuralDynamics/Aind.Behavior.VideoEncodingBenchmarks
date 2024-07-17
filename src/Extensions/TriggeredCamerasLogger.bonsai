@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.2"
+<WorkflowBuilder Version="2.8.5"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:p1="clr-namespace:AindVideoEncodingBenchmarksSchemas.Rig;assembly=Extensions"
@@ -96,17 +96,6 @@
                     <Name>ThisWriter</Name>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>ThisWriter</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>FrameRate</Selector>
-                  </Expression>
-                  <Expression xsi:type="PropertyMapping">
-                    <PropertyMappings>
-                      <Property Name="EncodingFrameRate" />
-                    </PropertyMappings>
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
                     <Name>ThisCameraName</Name>
                   </Expression>
                   <Expression xsi:type="PropertyMapping">
@@ -126,17 +115,6 @@
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>ThisWriter</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>OutputArguments</Selector>
-                  </Expression>
-                  <Expression xsi:type="PropertyMapping">
-                    <PropertyMappings>
-                      <Property Name="Codec" />
-                    </PropertyMappings>
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
                     <Name>Modality</Name>
                   </Expression>
                   <Expression xsi:type="PropertyMapping">
@@ -146,12 +124,9 @@
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:GenerateSpinnakerLoggingPath.bonsai">
                     <SubjectName>LoggingRootPath</SubjectName>
-                    <Modality xsi:nil="true" />
+                    <Modality>BehaviorVideos</Modality>
                     <LogName>FaceCamera</LogName>
-                    <EncodingFrameRate>60</EncodingFrameRate>
                     <VideoExtension>mp4</VideoExtension>
-                    <MetadataExtension>csv</MetadataExtension>
-                    <Codec>-c:v h264_nvenc -vsync 0 -2pass 1 -bf:v 0 -qp 13-preset medium -b:v 20M -rc:v cbr</Codec>
                   </Expression>
                   <Expression xsi:type="rx:AsyncSubject">
                     <Name>CameraLoggerPath</Name>
@@ -225,8 +200,15 @@
                   <Expression xsi:type="PropertyMapping">
                     <PropertyMappings>
                       <Property Name="FileName" Selector="Video" />
-                      <Property Name="FrameRate" Selector="Logger.EncodingFrameRate" />
-                      <Property Name="OutputArguments" Selector="Logger.Codec" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>ThisWriter</Name>
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="FrameRate" Selector="FrameRate" />
+                      <Property Name="OutputArguments" Selector="OutputArguments" />
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
@@ -244,30 +226,26 @@
                   <Edge From="6" To="7" Label="Source1" />
                   <Edge From="7" To="8" Label="Source1" />
                   <Edge From="9" To="10" Label="Source1" />
-                  <Edge From="10" To="11" Label="Source1" />
-                  <Edge From="11" To="22" Label="Source1" />
+                  <Edge From="10" To="16" Label="Source1" />
+                  <Edge From="11" To="12" Label="Source1" />
                   <Edge From="12" To="13" Label="Source1" />
-                  <Edge From="13" To="22" Label="Source2" />
+                  <Edge From="13" To="16" Label="Source2" />
                   <Edge From="14" To="15" Label="Source1" />
-                  <Edge From="15" To="16" Label="Source1" />
-                  <Edge From="16" To="22" Label="Source3" />
-                  <Edge From="17" To="18" Label="Source1" />
+                  <Edge From="15" To="16" Label="Source3" />
+                  <Edge From="16" To="17" Label="Source1" />
                   <Edge From="18" To="19" Label="Source1" />
-                  <Edge From="19" To="22" Label="Source4" />
+                  <Edge From="19" To="20" Label="Source1" />
                   <Edge From="20" To="21" Label="Source1" />
-                  <Edge From="21" To="22" Label="Source5" />
+                  <Edge From="21" To="25" Label="Source1" />
                   <Edge From="22" To="23" Label="Source1" />
-                  <Edge From="24" To="25" Label="Source1" />
+                  <Edge From="23" To="24" Label="Source1" />
+                  <Edge From="24" To="25" Label="Source2" />
                   <Edge From="25" To="26" Label="Source1" />
-                  <Edge From="26" To="27" Label="Source1" />
-                  <Edge From="27" To="31" Label="Source1" />
-                  <Edge From="28" To="29" Label="Source1" />
+                  <Edge From="26" To="31" Label="Source1" />
+                  <Edge From="27" To="28" Label="Source1" />
+                  <Edge From="28" To="31" Label="Source2" />
                   <Edge From="29" To="30" Label="Source1" />
-                  <Edge From="30" To="31" Label="Source2" />
-                  <Edge From="31" To="32" Label="Source1" />
-                  <Edge From="32" To="35" Label="Source1" />
-                  <Edge From="33" To="34" Label="Source1" />
-                  <Edge From="34" To="35" Label="Source2" />
+                  <Edge From="30" To="31" Label="Source3" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -330,17 +308,6 @@
                     <Name>ThisWriter</Name>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>ThisWriter</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>FrameRate</Selector>
-                  </Expression>
-                  <Expression xsi:type="PropertyMapping">
-                    <PropertyMappings>
-                      <Property Name="EncodingFrameRate" />
-                    </PropertyMappings>
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
                     <Name>ThisCameraName</Name>
                   </Expression>
                   <Expression xsi:type="PropertyMapping">
@@ -360,17 +327,6 @@
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>ThisWriter</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>FourCc</Selector>
-                  </Expression>
-                  <Expression xsi:type="PropertyMapping">
-                    <PropertyMappings>
-                      <Property Name="Codec" />
-                    </PropertyMappings>
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
                     <Name>Modality</Name>
                   </Expression>
                   <Expression xsi:type="PropertyMapping">
@@ -380,12 +336,9 @@
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:GenerateSpinnakerLoggingPath.bonsai">
                     <SubjectName>LoggingRootPath</SubjectName>
-                    <Modality xsi:nil="true" />
+                    <Modality>BehaviorVideos</Modality>
                     <LogName>FaceCamera</LogName>
-                    <EncodingFrameRate>60</EncodingFrameRate>
                     <VideoExtension>mp4</VideoExtension>
-                    <MetadataExtension>csv</MetadataExtension>
-                    <Codec>-c:v h264_nvenc -vsync 0 -2pass 1 -bf:v 0 -qp 13-preset medium -b:v 20M -rc:v cbr</Codec>
                   </Expression>
                   <Expression xsi:type="rx:AsyncSubject">
                     <Name>CameraLoggerPath</Name>
@@ -459,8 +412,15 @@
                   <Expression xsi:type="PropertyMapping">
                     <PropertyMappings>
                       <Property Name="FileName" Selector="Video" />
-                      <Property Name="FrameRate" Selector="Logger.EncodingFrameRate" />
-                      <Property Name="FourCC" Selector="Logger.Codec" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>ThisWriter</Name>
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="FourCC" Selector="FourCc" />
+                      <Property Name="FrameRate" Selector="FrameRate" />
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
@@ -486,30 +446,26 @@
                   <Edge From="6" To="7" Label="Source1" />
                   <Edge From="7" To="8" Label="Source1" />
                   <Edge From="9" To="10" Label="Source1" />
-                  <Edge From="10" To="11" Label="Source1" />
-                  <Edge From="11" To="22" Label="Source1" />
+                  <Edge From="10" To="16" Label="Source1" />
+                  <Edge From="11" To="12" Label="Source1" />
                   <Edge From="12" To="13" Label="Source1" />
-                  <Edge From="13" To="22" Label="Source2" />
+                  <Edge From="13" To="16" Label="Source2" />
                   <Edge From="14" To="15" Label="Source1" />
-                  <Edge From="15" To="16" Label="Source1" />
-                  <Edge From="16" To="22" Label="Source3" />
-                  <Edge From="17" To="18" Label="Source1" />
+                  <Edge From="15" To="16" Label="Source3" />
+                  <Edge From="16" To="17" Label="Source1" />
                   <Edge From="18" To="19" Label="Source1" />
-                  <Edge From="19" To="22" Label="Source4" />
+                  <Edge From="19" To="20" Label="Source1" />
                   <Edge From="20" To="21" Label="Source1" />
-                  <Edge From="21" To="22" Label="Source5" />
+                  <Edge From="21" To="25" Label="Source1" />
                   <Edge From="22" To="23" Label="Source1" />
-                  <Edge From="24" To="25" Label="Source1" />
+                  <Edge From="23" To="24" Label="Source1" />
+                  <Edge From="24" To="25" Label="Source2" />
                   <Edge From="25" To="26" Label="Source1" />
-                  <Edge From="26" To="27" Label="Source1" />
-                  <Edge From="27" To="31" Label="Source1" />
-                  <Edge From="28" To="29" Label="Source1" />
+                  <Edge From="26" To="31" Label="Source1" />
+                  <Edge From="27" To="28" Label="Source1" />
+                  <Edge From="28" To="31" Label="Source2" />
                   <Edge From="29" To="30" Label="Source1" />
-                  <Edge From="30" To="31" Label="Source2" />
-                  <Edge From="31" To="32" Label="Source1" />
-                  <Edge From="32" To="35" Label="Source1" />
-                  <Edge From="33" To="34" Label="Source1" />
-                  <Edge From="34" To="35" Label="Source2" />
+                  <Edge From="30" To="31" Label="Source3" />
                 </Edges>
               </Workflow>
             </Expression>
