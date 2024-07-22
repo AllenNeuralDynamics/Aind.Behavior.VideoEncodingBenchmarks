@@ -738,7 +738,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:LogHarpDevice.bonsai">
                           <SubjectName>LoggingRootPath</SubjectName>
                           <Modality>Behavior</Modality>
-                          <DeviceName>Behavior</DeviceName>
+                          <DeviceName>HarpCommands/Behavior</DeviceName>
                           <HarpDeviceName>Behavior</HarpDeviceName>
                         </Expression>
                         <Expression xsi:type="SubscribeSubject">
@@ -1628,7 +1628,7 @@
               <VisualizerType xsi:type="TypeMapping" TypeArguments="gui:ListBoxDataSourceVisualizer" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>SelectedController0Camera</Name>
+              <Name>SelectedController1Camera</Name>
             </Expression>
             <Expression xsi:type="rx:CreateObservable">
               <Name>GetStream</Name>
@@ -1722,7 +1722,7 @@
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="gui:TableLayoutPanelBuilder">
-              <gui:Name>Controller0Visualization</gui:Name>
+              <gui:Name>Controller1Visualization</gui:Name>
               <gui:Enabled>true</gui:Enabled>
               <gui:Visible>true</gui:Visible>
               <gui:ColumnCount>1</gui:ColumnCount>
