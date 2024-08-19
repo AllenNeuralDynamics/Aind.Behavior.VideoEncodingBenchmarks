@@ -767,7 +767,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:LogHarpDevice.bonsai">
                           <SubjectName>LoggingRootPath</SubjectName>
                           <Modality>Behavior</Modality>
-                          <DeviceName>ClockGenerator</DeviceName>
+                          <DeviceName>HarpCommands/ClockGenerator</DeviceName>
                           <HarpDeviceName>TimestampGeneratorGen3</HarpDeviceName>
                         </Expression>
                       </Nodes>
