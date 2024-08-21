@@ -1508,7 +1508,7 @@
               <Combinator xsi:type="cv:ImageHistogram" />
             </Expression>
             <Expression xsi:type="VisualizerMapping">
-              <VisualizerType xsi:type="TypeMapping" TypeArguments="p8:IplImageVisualizer" />
+              <VisualizerType xsi:type="TypeMapping" TypeArguments="p8:ScalarHistogramVisualizer" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>TriggeredCamerasController0Exists</Name>
@@ -1710,7 +1710,7 @@
               <Combinator xsi:type="cv:ImageHistogram" />
             </Expression>
             <Expression xsi:type="VisualizerMapping">
-              <VisualizerType xsi:type="TypeMapping" TypeArguments="p8:IplImageVisualizer" />
+              <VisualizerType xsi:type="TypeMapping" TypeArguments="p8:ScalarHistogramVisualizer" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>TriggeredCamerasController1Exists</Name>
