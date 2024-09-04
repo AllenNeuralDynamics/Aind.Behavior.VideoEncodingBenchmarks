@@ -17,7 +17,11 @@ class ExampleTests(unittest.TestCase):
                 module = build_example(script_path)
                 # Check if the module executed successfully
                 if hasattr(module, "__name__") and module.__name__ == "__main__":
-                    self.assertEqual(module.__name__, "__main__", f"Script {script_path} failed to execute")
+                    self.assertEqual(
+                        module.__name__,
+                        "__main__",
+                        f"Script {script_path} failed to execute",
+                    )
 
 
 if __name__ == "__main__":

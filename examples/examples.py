@@ -11,7 +11,6 @@ from aind_behavior_video_encoding_benchmarks.task_logic import (
 
 
 def main(path_seed: str = "./local/{schema}.json"):
-
     this_session = AindBehaviorSessionModel(
         date=datetime.datetime.now(tz=datetime.timezone.utc),
         experiment="AindVideoEncodingBenchmarks",
@@ -25,7 +24,11 @@ def main(path_seed: str = "./local/{schema}.json"):
         experimenter=["Foo", "Bar"],
     )
 
-    this_task = AindVideoEncodingBenchmarksTaskLogic(task_parameters=AindVideoEncodingBenchmarksTaskParameters())
+    this_task = AindVideoEncodingBenchmarksTaskLogic(
+        task_parameters=AindVideoEncodingBenchmarksTaskParameters(
+            save_raw_video=False,
+        )
+    )
 
     video_writer = rig.VideoWriterFfmpeg(
         frame_rate=120,
@@ -39,10 +42,18 @@ def main(path_seed: str = "./local/{schema}.json"):
             frame_rate=120,
             cameras={
                 "FaceCamera": rig.SpinnakerCamera(
-                    serial_number="SerialNumber", binning=1, exposure=5000, gain=0, video_writer=video_writer
+                    serial_number="SerialNumber",
+                    binning=1,
+                    exposure=5000,
+                    gain=0,
+                    video_writer=video_writer,
                 ),
                 "SideCamera": rig.SpinnakerCamera(
-                    serial_number="SerialNumber", binning=1, exposure=5000, gain=0, video_writer=video_writer
+                    serial_number="SerialNumber",
+                    binning=1,
+                    exposure=5000,
+                    gain=0,
+                    video_writer=video_writer,
                 ),
             },
         ),
@@ -56,7 +67,9 @@ def main(path_seed: str = "./local/{schema}.json"):
     models = [this_session, this_rig, this_task]
 
     for model in models:
-        with open(path_seed.format(schema=model.__class__.__name__), "w", encoding="utf-8") as f:
+        with open(
+            path_seed.format(schema=model.__class__.__name__), "w", encoding="utf-8"
+        ) as f:
             f.write(model.model_dump_json(indent=2))
 
 

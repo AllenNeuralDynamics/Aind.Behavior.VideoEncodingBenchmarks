@@ -13,7 +13,6 @@ from typing_extensions import override
 
 
 class CustomLauncherCli(LauncherCli):
-
     @override
     def __init__(
         self,
@@ -27,16 +26,25 @@ class CustomLauncherCli(LauncherCli):
         repository_dir: Optional[os.PathLike | str] = None,
         **launcher_kwargs,
     ) -> None:
-
         parser = self._get_default_arg_parser()
         args, _ = parser.parse_known_args()
 
         # optional parameters that override the defaults
         data_dir = args.data_dir if args.data_dir is not None else data_dir
         workflow = args.workflow if args.workflow is not None else workflow
-        remote_data_dir = args.remote_data_dir if args.remote_data_dir is not None else remote_data_dir
-        repository_dir = args.repository_dir if args.repository_dir is not None else repository_dir
-        config_library_dir = args.config_library_dir if args.config_library_dir is not None else config_library_dir
+        remote_data_dir = (
+            args.remote_data_dir
+            if args.remote_data_dir is not None
+            else remote_data_dir
+        )
+        repository_dir = (
+            args.repository_dir if args.repository_dir is not None else repository_dir
+        )
+        config_library_dir = (
+            args.config_library_dir
+            if args.config_library_dir is not None
+            else config_library_dir
+        )
 
         # flag-like parameter
         force_create_directories = args.force_create_directories
@@ -68,7 +76,6 @@ class CustomLauncherCli(LauncherCli):
 
 
 class CustomLauncher(Launcher):
-
     def _get_experimenter(self) -> list[str]:
         experimenters_input = str(input("Enter experimenter(s):"))
         split = re.split(
@@ -96,7 +103,8 @@ class CustomLauncher(Launcher):
             session.experimenter = self._get_experimenter()
 
             task_logic = AindVideoEncodingBenchmarksTaskLogic(
-                task_parameters=AindVideoEncodingBenchmarksTaskParameters())
+                task_parameters=AindVideoEncodingBenchmarksTaskParameters()
+            )
             rig = self.prompt_rig_input()
             bonsai_visualizer_layout = None
 
@@ -107,9 +115,15 @@ class CustomLauncher(Launcher):
             input("Press enter to launch Bonsai or Control+C to exit...")
 
             additional_properties = {
-                "TaskLogicPath": os.path.abspath(self.save_temp_model(model=task_logic, folder=self.temp_dir)),
-                "SessionPath": os.path.abspath(self.save_temp_model(model=session, folder=self.temp_dir)),
-                "RigPath": os.path.abspath(self.save_temp_model(model=rig, folder=self.temp_dir)),
+                "TaskLogicPath": os.path.abspath(
+                    self.save_temp_model(model=task_logic, folder=self.temp_dir)
+                ),
+                "SessionPath": os.path.abspath(
+                    self.save_temp_model(model=session, folder=self.temp_dir)
+                ),
+                "RigPath": os.path.abspath(
+                    self.save_temp_model(model=rig, folder=self.temp_dir)
+                ),
             }
 
             proc = open_bonsai_process(
@@ -118,7 +132,9 @@ class CustomLauncher(Launcher):
                 additional_properties=additional_properties,
                 layout=bonsai_visualizer_layout,
                 log_file_name=os.path.join(
-                    session.root_path, session.subject, f"{session.subject}_{session.date.strftime('%Y%m%dT%H%M%S')}"
+                    session.root_path,
+                    session.subject,
+                    f"{session.subject}_{session.date.strftime('%Y%m%dT%H%M%S')}",
                 ),
                 is_editor_mode=self.bonsai_is_editor_mode,
                 is_start_flag=self.bonsai_is_start_flag,

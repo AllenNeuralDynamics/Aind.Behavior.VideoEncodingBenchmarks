@@ -15,6 +15,18 @@
             }
           ],
           "title": "Rng Seed"
+        },
+        "aind_behavior_services_pkg_version": {
+          "default": "0.8.0-rc1",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "title": "aind_behavior_services package version",
+          "type": "string"
+        },
+        "save_raw_video": {
+          "default": false,
+          "description": "For each video-writer object, will also save the RAW encoded video to disk. Use at your own risk.",
+          "title": "Save Raw Video",
+          "type": "boolean"
         }
       },
       "title": "AindVideoEncodingBenchmarksTaskParameters",
@@ -44,8 +56,8 @@
       "description": "Parameters of the task logic"
     },
     "version": {
-      "const": "0.1.0",
-      "default": "0.1.0",
+      "const": "0.1.1",
+      "default": "0.1.1",
       "title": "Version",
       "type": "string"
     },
