@@ -13,8 +13,8 @@ from aind_behavior_video_encoding_benchmarks.task_logic import (
 from pydantic import ValidationError
 
 sys.path.append(".")
-from examples import examples  # isort:skip # pylint: disable=wrong-import-position # noqa: E402
-from tests import JSON_ROOT  # isort:skip # pylint: disable=wrong-import-position # noqa: E402
+from examples import examples  # isort:skip # pylint: disable=wrong-import-position
+from tests import JSON_ROOT  # isort:skip # pylint: disable=wrong-import-position
 
 TModel = TypeVar(
     "TModel",
@@ -69,9 +69,7 @@ class BonsaiTests(unittest.TestCase):
             try:
                 model.try_deserialization(stdout)
             except ValueError:
-                self.fail(
-                    f"Could not find a match for {model.input_model.__class__.__name__}."
-                )
+                self.fail(f"Could not find a match for {model.input_model.__class__.__name__}.")
 
 
 class TestModel(Generic[TModel]):
@@ -80,9 +78,7 @@ class TestModel(Generic[TModel]):
         self.json_path: Path = json_root / f"{model.__name__}.json"
         if not os.path.exists(self.json_path):
             raise FileNotFoundError(f"File {self.json_path} does not exist")
-        self.input_model: TModel = model.model_validate_json(
-            self.read_json(self.json_path)
-        )
+        self.input_model: TModel = model.model_validate_json(self.read_json(self.json_path))
         self.deserialized_model: Optional[TModel] = None
 
     def validate_deserialization(self) -> bool:
@@ -90,9 +86,7 @@ class TestModel(Generic[TModel]):
             raise ValueError("Input model is not set.")
         if not self.deserialized_model:
             raise ValueError("Deserialized model is not set.")
-        _round_trip = self.input_model.model_validate_json(
-            self.input_model.model_dump_json()
-        )
+        _round_trip = self.input_model.model_validate_json(self.input_model.model_dump_json())
         return _round_trip == self.deserialized_model
 
     def try_deserialization(self, json_str: Union[str, List[str]]) -> TModel:

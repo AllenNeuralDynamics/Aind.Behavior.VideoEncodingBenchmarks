@@ -33,7 +33,7 @@ def main(path_seed: str = "./local/{schema}.json"):
     video_writer = rig.VideoWriterFfmpeg(
         frame_rate=120,
         container_extension="mp4",
-        output_arguments="-c:v hevc_nvenc -pix_fmt x2rgb10le -color_range full -tune hq -preset p3 -rc vbr -cq 16 -rc-lookahead 56 -temporal-aq 1 -qmin 0 -qmax 10",  # noqa: E501
+        output_arguments="-c:v hevc_nvenc -pix_fmt x2rgb10le -color_range full -tune hq -preset p3 -rc vbr -cq 16 -rc-lookahead 56 -temporal-aq 1 -qmin 0 -qmax 10",
     )
 
     this_rig = AindVideoEncodingBenchmarksRig(
@@ -67,9 +67,7 @@ def main(path_seed: str = "./local/{schema}.json"):
     models = [this_session, this_rig, this_task]
 
     for model in models:
-        with open(
-            path_seed.format(schema=model.__class__.__name__), "w", encoding="utf-8"
-        ) as f:
+        with open(path_seed.format(schema=model.__class__.__name__), "w", encoding="utf-8") as f:
             f.write(model.model_dump_json(indent=2))
 
 
