@@ -11,7 +11,7 @@ __version__ = "0.1.1"
 class AindVideoEncodingBenchmarksTaskParameters(TaskParameters):
     save_raw_video: bool = Field(
         default=False,
-        description="For each video-writer object, will also save the RAW encoded video to disk. Use at your own risk."
+        description="For each video-writer object, will also save the RAW encoded video to disk. Use at your own risk.",
     )
 
 
@@ -22,6 +22,4 @@ class AindVideoEncodingBenchmarksTaskLogic(AindBehaviorTaskLogicModel):
         description="Name of the task logic",
         frozen=True,
     )
-    task_parameters: AindVideoEncodingBenchmarksTaskParameters = Field(
-        ..., description="Parameters of the task logic"
-    )
+    task_parameters: AindVideoEncodingBenchmarksTaskParameters = Field(..., description="Parameters of the task logic")
