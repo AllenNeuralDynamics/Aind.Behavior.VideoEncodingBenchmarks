@@ -192,6 +192,40 @@
       "title": "HarpClockGenerator",
       "type": "object"
     },
+    "Rect": {
+      "properties": {
+        "x": {
+          "default": 0,
+          "description": "X coordinate of the top-left corner",
+          "minimum": 0,
+          "title": "X",
+          "type": "integer"
+        },
+        "y": {
+          "default": 0,
+          "description": "Y coordinate of the top-left corner",
+          "minimum": 0,
+          "title": "Y",
+          "type": "integer"
+        },
+        "width": {
+          "default": 0,
+          "description": "Width of the rectangle",
+          "minimum": 0,
+          "title": "Width",
+          "type": "integer"
+        },
+        "height": {
+          "default": 0,
+          "description": "Height of the rectangle",
+          "minimum": 0,
+          "title": "Height",
+          "type": "integer"
+        }
+      },
+      "title": "Rect",
+      "type": "object"
+    },
     "SpinnakerCamera": {
       "properties": {
         "device_type": {
@@ -261,6 +295,43 @@
           "title": "Gain",
           "type": "number"
         },
+        "gamma": {
+          "default": null,
+          "description": "Gamma. If None, will disable gamma correction.",
+          "oneOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Gamma"
+        },
+        "adc_bit_depth": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/SpinnakerCameraAdcBitDepth"
+            }
+          ],
+          "default": 0,
+          "description": "ADC bit depth"
+        },
+        "region_of_interest": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/Rect"
+            }
+          ],
+          "default": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "description": "Region of interest"
+        },
         "video_writer": {
           "default": null,
           "description": "Video writer. If not provided, no video will be saved.",
@@ -279,6 +350,20 @@
       ],
       "title": "SpinnakerCamera",
       "type": "object"
+    },
+    "SpinnakerCameraAdcBitDepth": {
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "title": "SpinnakerCameraAdcBitDepth",
+      "type": "integer",
+      "x-enumNames": [
+        "Adc8bit",
+        "Adc10bit",
+        "Adc12bit"
+      ]
     },
     "VideoWriter": {
       "discriminator": {
@@ -362,9 +447,15 @@
     }
   },
   "properties": {
+    "aind_behavior_services_pkg_version": {
+      "default": "0.8.0-rc1",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+      "title": "aind_behavior_services package version",
+      "type": "string"
+    },
     "version": {
-      "const": "0.1.0",
-      "default": "0.1.0",
+      "const": "0.1.1",
+      "default": "0.1.1",
       "title": "Version",
       "type": "string"
     },

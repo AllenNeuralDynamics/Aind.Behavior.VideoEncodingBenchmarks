@@ -17,6 +17,10 @@ namespace AindVideoEncodingBenchmarksSchemas.TaskLogic
     
         private double? _rngSeed;
     
+        private string _aindBehaviorServicesPkgVersion = "0.8.0-rc1";
+    
+        private bool _saveRawVideo = false;
+    
         public AindVideoEncodingBenchmarksTaskParameters()
         {
         }
@@ -24,6 +28,8 @@ namespace AindVideoEncodingBenchmarksSchemas.TaskLogic
         protected AindVideoEncodingBenchmarksTaskParameters(AindVideoEncodingBenchmarksTaskParameters other)
         {
             _rngSeed = other._rngSeed;
+            _aindBehaviorServicesPkgVersion = other._aindBehaviorServicesPkgVersion;
+            _saveRawVideo = other._saveRawVideo;
         }
     
         /// <summary>
@@ -44,6 +50,37 @@ namespace AindVideoEncodingBenchmarksSchemas.TaskLogic
             }
         }
     
+        [Newtonsoft.Json.JsonPropertyAttribute("aind_behavior_services_pkg_version")]
+        public string AindBehaviorServicesPkgVersion
+        {
+            get
+            {
+                return _aindBehaviorServicesPkgVersion;
+            }
+            set
+            {
+                _aindBehaviorServicesPkgVersion = value;
+            }
+        }
+    
+        /// <summary>
+        /// For each video-writer object, will also save the RAW encoded video to disk. Use at your own risk.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("save_raw_video")]
+        [System.ComponentModel.DescriptionAttribute("For each video-writer object, will also save the RAW encoded video to disk. Use a" +
+            "t your own risk.")]
+        public bool SaveRawVideo
+        {
+            get
+            {
+                return _saveRawVideo;
+            }
+            set
+            {
+                _saveRawVideo = value;
+            }
+        }
+    
         public System.IObservable<AindVideoEncodingBenchmarksTaskParameters> Process()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new AindVideoEncodingBenchmarksTaskParameters(this)));
@@ -56,7 +93,9 @@ namespace AindVideoEncodingBenchmarksSchemas.TaskLogic
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("rng_seed = " + _rngSeed);
+            stringBuilder.Append("rng_seed = " + _rngSeed + ", ");
+            stringBuilder.Append("aind_behavior_services_pkg_version = " + _aindBehaviorServicesPkgVersion + ", ");
+            stringBuilder.Append("save_raw_video = " + _saveRawVideo);
             return true;
         }
     
@@ -87,7 +126,7 @@ namespace AindVideoEncodingBenchmarksSchemas.TaskLogic
     
         private AindVideoEncodingBenchmarksTaskParameters _taskParameters = new AindVideoEncodingBenchmarksTaskParameters();
     
-        private string _version = "0.1.0";
+        private string _version = "0.1.1";
     
         private string _stageName;
     

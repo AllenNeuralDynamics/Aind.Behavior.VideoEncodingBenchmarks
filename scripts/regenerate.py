@@ -16,7 +16,6 @@ NAMESPACE_PREFIX = "AindVideoEncodingBenchmarksSchemas"
 
 
 def main():
-
     models = [
         aind_behavior_video_encoding_benchmarks.task_logic.AindVideoEncodingBenchmarksTaskLogic,
         aind_behavior_video_encoding_benchmarks.rig.AindVideoEncodingBenchmarksRig,
@@ -31,7 +30,10 @@ def main():
 
         print((schema_name, namespace))
         convert_pydantic_to_bonsai(
-            {schema_name: model}, schema_path=SCHEMA_ROOT, output_path=EXTENSIONS_ROOT, namespace=namespace
+            {schema_name: model},
+            schema_path=SCHEMA_ROOT,
+            output_path=EXTENSIONS_ROOT,
+            namespace=namespace,
         )
 
 

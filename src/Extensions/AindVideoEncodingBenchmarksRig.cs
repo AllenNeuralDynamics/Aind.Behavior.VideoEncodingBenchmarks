@@ -533,6 +533,134 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.CombinatorAttribute()]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    public partial class Rect
+    {
+    
+        private int _x = 0;
+    
+        private int _y = 0;
+    
+        private int _width = 0;
+    
+        private int _height = 0;
+    
+        public Rect()
+        {
+        }
+    
+        protected Rect(Rect other)
+        {
+            _x = other._x;
+            _y = other._y;
+            _width = other._width;
+            _height = other._height;
+        }
+    
+        /// <summary>
+        /// X coordinate of the top-left corner
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("x")]
+        [System.ComponentModel.DescriptionAttribute("X coordinate of the top-left corner")]
+        public int X
+        {
+            get
+            {
+                return _x;
+            }
+            set
+            {
+                _x = value;
+            }
+        }
+    
+        /// <summary>
+        /// Y coordinate of the top-left corner
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("y")]
+        [System.ComponentModel.DescriptionAttribute("Y coordinate of the top-left corner")]
+        public int Y
+        {
+            get
+            {
+                return _y;
+            }
+            set
+            {
+                _y = value;
+            }
+        }
+    
+        /// <summary>
+        /// Width of the rectangle
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("width")]
+        [System.ComponentModel.DescriptionAttribute("Width of the rectangle")]
+        public int Width
+        {
+            get
+            {
+                return _width;
+            }
+            set
+            {
+                _width = value;
+            }
+        }
+    
+        /// <summary>
+        /// Height of the rectangle
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("height")]
+        [System.ComponentModel.DescriptionAttribute("Height of the rectangle")]
+        public int Height
+        {
+            get
+            {
+                return _height;
+            }
+            set
+            {
+                _height = value;
+            }
+        }
+    
+        public System.IObservable<Rect> Process()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new Rect(this)));
+        }
+    
+        public System.IObservable<Rect> Process<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new Rect(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("x = " + _x + ", ");
+            stringBuilder.Append("y = " + _y + ", ");
+            stringBuilder.Append("width = " + _width + ", ");
+            stringBuilder.Append("height = " + _height);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.CombinatorAttribute()]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     public partial class SpinnakerCamera
     {
     
@@ -552,6 +680,12 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     
         private double _gain = 0D;
     
+        private double? _gamma;
+    
+        private SpinnakerCameraAdcBitDepth _adcBitDepth = AindVideoEncodingBenchmarksSchemas.Rig.SpinnakerCameraAdcBitDepth.Adc8bit;
+    
+        private Rect _regionOfInterest;
+    
         private VideoWriter _videoWriter;
     
         public SpinnakerCamera()
@@ -568,6 +702,9 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             _colorProcessing = other._colorProcessing;
             _exposure = other._exposure;
             _gain = other._gain;
+            _gamma = other._gamma;
+            _adcBitDepth = other._adcBitDepth;
+            _regionOfInterest = other._regionOfInterest;
             _videoWriter = other._videoWriter;
         }
     
@@ -711,6 +848,60 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
         }
     
         /// <summary>
+        /// Gamma. If None, will disable gamma correction.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("gamma")]
+        [System.ComponentModel.DescriptionAttribute("Gamma. If None, will disable gamma correction.")]
+        public double? Gamma
+        {
+            get
+            {
+                return _gamma;
+            }
+            set
+            {
+                _gamma = value;
+            }
+        }
+    
+        /// <summary>
+        /// ADC bit depth
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("adc_bit_depth")]
+        [System.ComponentModel.DescriptionAttribute("ADC bit depth")]
+        public SpinnakerCameraAdcBitDepth AdcBitDepth
+        {
+            get
+            {
+                return _adcBitDepth;
+            }
+            set
+            {
+                _adcBitDepth = value;
+            }
+        }
+    
+        /// <summary>
+        /// Region of interest
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("region_of_interest")]
+        [System.ComponentModel.DescriptionAttribute("Region of interest")]
+        public Rect RegionOfInterest
+        {
+            get
+            {
+                return _regionOfInterest;
+            }
+            set
+            {
+                _regionOfInterest = value;
+            }
+        }
+    
+        /// <summary>
         /// Video writer. If not provided, no video will be saved.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
@@ -748,6 +939,9 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             stringBuilder.Append("color_processing = " + _colorProcessing + ", ");
             stringBuilder.Append("exposure = " + _exposure + ", ");
             stringBuilder.Append("gain = " + _gain + ", ");
+            stringBuilder.Append("gamma = " + _gamma + ", ");
+            stringBuilder.Append("adc_bit_depth = " + _adcBitDepth + ", ");
+            stringBuilder.Append("region_of_interest = " + _regionOfInterest + ", ");
             stringBuilder.Append("video_writer = " + _videoWriter);
             return true;
         }
@@ -764,6 +958,21 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             stringBuilder.Append("}");
             return stringBuilder.ToString();
         }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    public enum SpinnakerCameraAdcBitDepth
+    {
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="0")]
+        Adc8bit = 0,
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="1")]
+        Adc10bit = 1,
+    
+        [System.Runtime.Serialization.EnumMemberAttribute(Value="2")]
+        Adc12bit = 2,
     }
 
 
@@ -1018,7 +1227,9 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     public partial class AindVideoEncodingBenchmarksRig
     {
     
-        private string _version = "0.1.0";
+        private string _aindBehaviorServicesPkgVersion = "0.8.0-rc1";
+    
+        private string _version = "0.1.1";
     
         private string _computerName;
     
@@ -1038,6 +1249,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     
         protected AindVideoEncodingBenchmarksRig(AindVideoEncodingBenchmarksRig other)
         {
+            _aindBehaviorServicesPkgVersion = other._aindBehaviorServicesPkgVersion;
             _version = other._version;
             _computerName = other._computerName;
             _rigName = other._rigName;
@@ -1045,6 +1257,19 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             _triggeredCameraController1 = other._triggeredCameraController1;
             _harpBehavior = other._harpBehavior;
             _harpClockGenerator = other._harpClockGenerator;
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("aind_behavior_services_pkg_version")]
+        public string AindBehaviorServicesPkgVersion
+        {
+            get
+            {
+                return _aindBehaviorServicesPkgVersion;
+            }
+            set
+            {
+                _aindBehaviorServicesPkgVersion = value;
+            }
         }
     
         [Newtonsoft.Json.JsonPropertyAttribute("version")]
@@ -1181,6 +1406,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
+            stringBuilder.Append("aind_behavior_services_pkg_version = " + _aindBehaviorServicesPkgVersion + ", ");
             stringBuilder.Append("version = " + _version + ", ");
             stringBuilder.Append("computer_name = " + _computerName + ", ");
             stringBuilder.Append("rig_name = " + _rigName + ", ");
@@ -1432,6 +1658,11 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             return Process<HarpClockGenerator>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<Rect> source)
+        {
+            return Process<Rect>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<SpinnakerCamera> source)
         {
             return Process<SpinnakerCamera>(source);
@@ -1470,6 +1701,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<CameraControllerSpinnakerCamera>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<HarpBehavior>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<HarpClockGenerator>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Rect>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<SpinnakerCamera>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriter>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriterFfmpeg>))]
