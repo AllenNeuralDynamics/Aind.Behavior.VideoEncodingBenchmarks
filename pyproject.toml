@@ -14,13 +14,13 @@ readme = "README.md"
 dynamic = ["version"]
 
 dependencies = [
-  "aind_behavior_services@git+https://github.com/AllenNeuralDynamics/Aind.Behavior.Services@0.8.0-rc3",
+  "aind_behavior_services@git+https://github.com/AllenNeuralDynamics/Aind.Behavior.Services@release/0.8.0",
 ]
 
 [project.optional-dependencies]
 
 aind-services = [
-    "aind_behavior_services[aind-services]@git+https://github.com/AllenNeuralDynamics/Aind.Behavior.Services@0.8.0-rc3",
+    "aind_behavior_services[aind-services]@git+https://github.com/AllenNeuralDynamics/Aind.Behavior.Services@release/0.8.0",
   ]
 
 linters = [
