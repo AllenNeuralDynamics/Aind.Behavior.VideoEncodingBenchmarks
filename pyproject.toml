@@ -14,13 +14,13 @@ readme = "README.md"
 dynamic = ["version"]
 
 dependencies = [
-  "aind_behavior_services@git+https://github.com/AllenNeuralDynamics/Aind.Behavior.Services@0.8.0-rc2",
+  "aind_behavior_services@git+https://github.com/AllenNeuralDynamics/Aind.Behavior.Services@refactor-ffmpeg-string",
 ]
 
 [project.optional-dependencies]
 
 aind-extra-services = [
-    "aind_behavior_services[aind-extra-services]@git+https://github.com/AllenNeuralDynamics/Aind.Behavior.Services@0.8.0-rc2",
+    "aind_behavior_services[aind-extra-services]@git+https://github.com/AllenNeuralDynamics/Aind.Behavior.Services@refactor-ffmpeg-string",
   ]
 
 linters = [

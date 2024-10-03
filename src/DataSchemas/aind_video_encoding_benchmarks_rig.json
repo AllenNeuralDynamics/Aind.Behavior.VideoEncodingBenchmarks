@@ -405,9 +405,15 @@
           "type": "string"
         },
         "output_arguments": {
-          "default": "-c:v hevc_nvenc -pix_fmt x2rgb10le -color_range full -tune hq -preset p3 -rc vbr -cq 16 -rc-lookahead 56 -temporal-aq 1 -qmin 0 -qmax 10",
+          "default": "-vf \"scale=out_color_matrix=bt709:out_range=full\" -c:v hevc_nvenc -pix_fmt p010le -color_range full -colorspace bt709 -color_trc linear -fps_mode passthrough -tune hq -preset p4 -rc vbr -cq 16 -qmin 0 -qmax 10 -metadata author=\"Allen Institute for Neural Dynamics\" -movflags +write_colr",
           "description": "Output arguments",
           "title": "Output Arguments",
+          "type": "string"
+        },
+        "input_arguments": {
+          "default": "-v verbose -colorspace rgb -color_primaries bt709 -color_trc linear",
+          "description": "Input arguments",
+          "title": "Input Arguments",
           "type": "string"
         }
       },

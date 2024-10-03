@@ -209,6 +209,7 @@
                     <PropertyMappings>
                       <Property Name="FrameRate" Selector="FrameRate" />
                       <Property Name="OutputArguments" Selector="OutputArguments" />
+                      <Property Name="InputArguments" Selector="InputArguments" />
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
