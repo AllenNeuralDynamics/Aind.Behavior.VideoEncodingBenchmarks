@@ -682,7 +682,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     
         private double? _gamma;
     
-        private SpinnakerCameraAdcBitDepth _adcBitDepth = AindVideoEncodingBenchmarksSchemas.Rig.SpinnakerCameraAdcBitDepth.Adc8bit;
+        private SpinnakerCameraAdcBitDepth? _adcBitDepth = AindVideoEncodingBenchmarksSchemas.Rig.SpinnakerCameraAdcBitDepth.Adc8bit;
     
         private Rect _regionOfInterest;
     
@@ -866,12 +866,12 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
         }
     
         /// <summary>
-        /// ADC bit depth
+        /// ADC bit depth. If None will be left as default.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [Newtonsoft.Json.JsonPropertyAttribute("adc_bit_depth")]
-        [System.ComponentModel.DescriptionAttribute("ADC bit depth")]
-        public SpinnakerCameraAdcBitDepth AdcBitDepth
+        [System.ComponentModel.DescriptionAttribute("ADC bit depth. If None will be left as default.")]
+        public SpinnakerCameraAdcBitDepth? AdcBitDepth
         {
             get
             {

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.2"
+<WorkflowBuilder Version="2.8.5"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
@@ -271,6 +271,9 @@
                       <Property Name="Gain" Selector="Gain" />
                       <Property Name="Binning" Selector="Binning" />
                       <Property Name="ColorProcessing" Selector="ColorProcessing" />
+                      <Property Name="Gamma" Selector="Gamma" />
+                      <Property Name="RegionOfInterest" Selector="RegionOfInterest.X,RegionOfInterest.Y,RegionOfInterest.Width,RegionOfInterest.Height" />
+                      <Property Name="AdcBitDepth" Selector="AdcBitDepth" />
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
@@ -282,6 +285,13 @@
                       <p1:Binning>1</p1:Binning>
                       <p1:Gamma xsi:nil="true" />
                       <p1:PixelFormat>Mono8</p1:PixelFormat>
+                      <p1:RegionOfInterest>
+                        <p1:X>0</p1:X>
+                        <p1:Y>0</p1:Y>
+                        <p1:Width>0</p1:Width>
+                        <p1:Height>0</p1:Height>
+                      </p1:RegionOfInterest>
+                      <p1:AdcBitDepth xsi:nil="true" />
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">

@@ -310,13 +310,16 @@
           "title": "Gamma"
         },
         "adc_bit_depth": {
-          "allOf": [
+          "default": 0,
+          "description": "ADC bit depth. If None will be left as default.",
+          "oneOf": [
             {
               "$ref": "#/definitions/SpinnakerCameraAdcBitDepth"
+            },
+            {
+              "type": "null"
             }
-          ],
-          "default": 0,
-          "description": "ADC bit depth"
+          ]
         },
         "region_of_interest": {
           "allOf": [
