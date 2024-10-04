@@ -33,7 +33,7 @@ def main(path_seed: str = "./local/{schema}.json"):
     video_writer = rig.VideoWriterFfmpeg(
         frame_rate=120,
         container_extension="mp4",
-        output_arguments="-c:v hevc_nvenc -pix_fmt x2rgb10le -color_range full -tune hq -preset p3 -rc vbr -cq 16 -rc-lookahead 56 -temporal-aq 1 -qmin 0 -qmax 10",
+        # input and output arguments can be overridden by the user
     )
 
     this_rig = AindVideoEncodingBenchmarksRig(
@@ -47,6 +47,7 @@ def main(path_seed: str = "./local/{schema}.json"):
                     exposure=5000,
                     gain=0,
                     video_writer=video_writer,
+                    adc_bit_depth=rig.SpinnakerCameraAdcBitDepth.ADC10BIT,
                 ),
                 "SideCamera": rig.SpinnakerCamera(
                     serial_number="SerialNumber",
@@ -54,12 +55,13 @@ def main(path_seed: str = "./local/{schema}.json"):
                     exposure=5000,
                     gain=0,
                     video_writer=video_writer,
+                    adc_bit_depth=rig.SpinnakerCameraAdcBitDepth.ADC10BIT,
                 ),
             },
         ),
         triggered_camera_controller_1=None,
         harp_behavior=rig.HarpBehavior(port_name="COM3"),
-        harp_clock_generator=rig.HarpClockGenerator(port_name="COM6"),
+        harp_clock_generator=rig.HarpClockGenerator(port_name="COM4"),
     )
 
     os.makedirs(os.path.dirname(path_seed), exist_ok=True)
