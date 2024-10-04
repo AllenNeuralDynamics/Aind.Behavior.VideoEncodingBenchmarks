@@ -682,7 +682,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     
         private double? _gamma;
     
-        private SpinnakerCameraAdcBitDepth _adcBitDepth = AindVideoEncodingBenchmarksSchemas.Rig.SpinnakerCameraAdcBitDepth.Adc8bit;
+        private SpinnakerCameraAdcBitDepth? _adcBitDepth = AindVideoEncodingBenchmarksSchemas.Rig.SpinnakerCameraAdcBitDepth.Adc8bit;
     
         private Rect _regionOfInterest;
     
@@ -866,12 +866,12 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
         }
     
         /// <summary>
-        /// ADC bit depth
+        /// ADC bit depth. If None will be left as default.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [Newtonsoft.Json.JsonPropertyAttribute("adc_bit_depth")]
-        [System.ComponentModel.DescriptionAttribute("ADC bit depth")]
-        public SpinnakerCameraAdcBitDepth AdcBitDepth
+        [System.ComponentModel.DescriptionAttribute("ADC bit depth. If None will be left as default.")]
+        public SpinnakerCameraAdcBitDepth? AdcBitDepth
         {
             get
             {
@@ -1033,7 +1033,9 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     
         private string _containerExtension = "mp4";
     
-        private string _outputArguments = "-c:v hevc_nvenc -pix_fmt x2rgb10le -color_range full -tune hq -preset p3 -rc vbr -cq 16 -rc-lookahead 56 -temporal-aq 1 -qmin 0 -qmax 10";
+        private string _outputArguments = "-vf \"scale=out_color_matrix=bt709:out_range=full\" -c:v hevc_nvenc -pix_fmt p010le -color_range full -colorspace bt709 -color_trc linear -fps_mode passthrough -tune hq -preset p4 -rc vbr -cq 16 -qmin 0 -qmax 10 -metadata author=\"Allen Institute for Neural Dynamics\" -movflags +write_colr";
+    
+        private string _inputArguments = "-v verbose -colorspace rgb -color_primaries bt709 -color_trc linear";
     
         public VideoWriterFfmpeg()
         {
@@ -1045,6 +1047,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             _frameRate = other._frameRate;
             _containerExtension = other._containerExtension;
             _outputArguments = other._outputArguments;
+            _inputArguments = other._inputArguments;
         }
     
         /// <summary>
@@ -1098,6 +1101,23 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             }
         }
     
+        /// <summary>
+        /// Input arguments
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("input_arguments")]
+        [System.ComponentModel.DescriptionAttribute("Input arguments")]
+        public string InputArguments
+        {
+            get
+            {
+                return _inputArguments;
+            }
+            set
+            {
+                _inputArguments = value;
+            }
+        }
+    
         public System.IObservable<VideoWriterFfmpeg> Process()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new VideoWriterFfmpeg(this)));
@@ -1116,7 +1136,8 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             }
             stringBuilder.Append("frame_rate = " + _frameRate + ", ");
             stringBuilder.Append("container_extension = " + _containerExtension + ", ");
-            stringBuilder.Append("output_arguments = " + _outputArguments);
+            stringBuilder.Append("output_arguments = " + _outputArguments + ", ");
+            stringBuilder.Append("input_arguments = " + _inputArguments);
             return true;
         }
     }
