@@ -1250,7 +1250,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     
         private string _aindBehaviorServicesPkgVersion = "0.8.0-rc1";
     
-        private string _version = "0.1.1";
+        private string _version = "0.1.2";
     
         private string _computerName;
     
@@ -1341,12 +1341,11 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
         }
     
         /// <summary>
-        /// Required camera controller to triggered cameras. Will use Camera0 register as a trigger.
+        /// Camera controller to triggered cameras. Will use Camera0 register as a trigger.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("triggered_camera_controller_0", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("Required camera controller to triggered cameras. Will use Camera0 register as a t" +
-            "rigger.")]
+        [Newtonsoft.Json.JsonPropertyAttribute("triggered_camera_controller_0")]
+        [System.ComponentModel.DescriptionAttribute("Camera controller to triggered cameras. Will use Camera0 register as a trigger.")]
         public CameraControllerSpinnakerCamera TriggeredCameraController0
         {
             get
@@ -1360,12 +1359,11 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
         }
     
         /// <summary>
-        /// Optional camera controller to triggered cameras. Will use Camera1 register as a trigger.
+        /// Camera controller to triggered cameras. Will use Camera1 register as a trigger.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [Newtonsoft.Json.JsonPropertyAttribute("triggered_camera_controller_1")]
-        [System.ComponentModel.DescriptionAttribute("Optional camera controller to triggered cameras. Will use Camera1 register as a t" +
-            "rigger.")]
+        [System.ComponentModel.DescriptionAttribute("Camera controller to triggered cameras. Will use Camera1 register as a trigger.")]
         public CameraControllerSpinnakerCamera TriggeredCameraController1
         {
             get

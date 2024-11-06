@@ -8,18 +8,18 @@ import aind_behavior_services.rig as rig
 from aind_behavior_services.rig import AindBehaviorRigModel
 from pydantic import Field
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 
 class AindVideoEncodingBenchmarksRig(AindBehaviorRigModel):
     version: Literal[__version__] = __version__
     triggered_camera_controller_0: Optional[rig.CameraController[rig.SpinnakerCamera]] = Field(
-        ...,
-        description="Required camera controller to triggered cameras. Will use Camera0 register as a trigger.",
+        default=None,
+        description="Camera controller to triggered cameras. Will use Camera0 register as a trigger.",
     )
     triggered_camera_controller_1: Optional[rig.CameraController[rig.SpinnakerCamera]] = Field(
         default=None,
-        description="Optional camera controller to triggered cameras. Will use Camera1 register as a trigger.",
+        description="Camera controller to triggered cameras. Will use Camera1 register as a trigger.",
     )
     harp_behavior: rig.HarpBehavior = Field(
         ...,
