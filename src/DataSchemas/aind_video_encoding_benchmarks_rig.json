@@ -463,8 +463,8 @@
       "type": "string"
     },
     "version": {
-      "const": "0.1.1",
-      "default": "0.1.1",
+      "const": "0.1.2",
+      "default": "0.1.2",
       "title": "Version",
       "type": "string"
     },
@@ -479,7 +479,8 @@
       "type": "string"
     },
     "triggered_camera_controller_0": {
-      "description": "Required camera controller to triggered cameras. Will use Camera0 register as a trigger.",
+      "default": null,
+      "description": "Camera controller to triggered cameras. Will use Camera0 register as a trigger.",
       "oneOf": [
         {
           "$ref": "#/definitions/CameraController_SpinnakerCamera_"
@@ -491,7 +492,7 @@
     },
     "triggered_camera_controller_1": {
       "default": null,
-      "description": "Optional camera controller to triggered cameras. Will use Camera1 register as a trigger.",
+      "description": "Camera controller to triggered cameras. Will use Camera1 register as a trigger.",
       "oneOf": [
         {
           "$ref": "#/definitions/CameraController_SpinnakerCamera_"
@@ -520,7 +521,6 @@
   },
   "required": [
     "rig_name",
-    "triggered_camera_controller_0",
     "harp_behavior",
     "harp_clock_generator"
   ],
