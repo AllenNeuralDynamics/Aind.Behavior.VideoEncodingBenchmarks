@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.5"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:beh="clr-namespace:Harp.Behavior;assembly=Harp.Behavior"
+                 xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>RigSchema</Name>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>HarpBehavior.PortName</Selector>
+      </Expression>
+      <Expression xsi:type="PropertyMapping">
+        <PropertyMappings>
+          <Property Name="PortName" />
+        </PropertyMappings>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.HarpUtils:HarpBehaviorDevice.bonsai">
+        <PortName>COM5</PortName>
+        <TriggerHarpReadDumpSubjectName>TriggerHarpReadDump</TriggerHarpReadDumpSubjectName>
+      </Expression>
+      <Expression xsi:type="beh:Parse">
+        <harp:Register xsi:type="beh:TimestampedAnalogData" />
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Seconds</Selector>
+      </Expression>
+      <Expression xsi:type="rx:BehaviorSubject">
+        <Name>HarpTimestampSource</Name>
+      </Expression>
+      <Expression xsi:type="WorkflowOutput" />
+      <Expression xsi:type="SubscribeSubject">
+        <Name>HarpBehaviorEvents</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Take">
+          <rx:Count>1</rx:Count>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="beh:CreateMessage">
+        <harp:MessageType>Write</harp:MessageType>
+        <harp:Payload xsi:type="beh:CreateEventEnablePayload">
+          <beh:EventEnable>PortDI PortDIO AnalogData Camera0 Camera1</beh:EventEnable>
+        </harp:Payload>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>HarpBehaviorCommands</Name>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
