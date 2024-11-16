@@ -6,6 +6,8 @@
                  xmlns:beh="clr-namespace:Harp.Behavior;assembly=Harp.Behavior"
                  xmlns:p1="clr-namespace:AllenNeuralDynamics.Core;assembly=AllenNeuralDynamics.Core"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
+                 xmlns:p2="clr-namespace:OpenCV.Net;assembly=OpenCV.Net"
                  xmlns:spk="clr-namespace:Bonsai.Spinnaker;assembly=Bonsai.Spinnaker"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
@@ -272,8 +274,36 @@
                       <Property Name="Binning" Selector="Binning" />
                       <Property Name="ColorProcessing" Selector="ColorProcessing" />
                       <Property Name="Gamma" Selector="Gamma" />
-                      <Property Name="RegionOfInterest" Selector="RegionOfInterest.X,RegionOfInterest.Y,RegionOfInterest.Width,RegionOfInterest.Height" />
+                      <Property Name="PixelFormat" Selector="PixelFormat" />
                       <Property Name="AdcBitDepth" Selector="AdcBitDepth" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>ThisCamera</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Value</Selector>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>RegionOfInterest</Selector>
+                  </Expression>
+                  <Expression xsi:type="InputMapping">
+                    <PropertyMappings>
+                      <Property Name="Value" Selector="X,Y,Width,Height" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="PropertySource" TypeArguments="cv:Crop,p2:Rect">
+                    <MemberName>RegionOfInterest</MemberName>
+                    <Value>
+                      <X>0</X>
+                      <Y>0</Y>
+                      <Width>0</Width>
+                      <Height>0</Height>
+                    </Value>
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="RegionOfInterest" />
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
@@ -319,17 +349,23 @@
                   <Edge From="1" To="2" Label="Source1" />
                   <Edge From="3" To="4" Label="Source1" />
                   <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="9" Label="Source1" />
+                  <Edge From="5" To="15" Label="Source1" />
                   <Edge From="6" To="7" Label="Source1" />
                   <Edge From="7" To="8" Label="Source1" />
-                  <Edge From="8" To="9" Label="Source2" />
-                  <Edge From="9" To="11" Label="Source1" />
-                  <Edge From="10" To="11" Label="Source2" />
+                  <Edge From="8" To="15" Label="Source2" />
+                  <Edge From="9" To="10" Label="Source1" />
+                  <Edge From="10" To="11" Label="Source1" />
                   <Edge From="11" To="12" Label="Source1" />
-                  <Edge From="12" To="15" Label="Source1" />
+                  <Edge From="12" To="13" Label="Source1" />
                   <Edge From="13" To="14" Label="Source1" />
-                  <Edge From="14" To="15" Label="Source2" />
-                  <Edge From="15" To="16" Label="Source1" />
+                  <Edge From="14" To="15" Label="Source3" />
+                  <Edge From="15" To="17" Label="Source1" />
+                  <Edge From="16" To="17" Label="Source2" />
+                  <Edge From="17" To="18" Label="Source1" />
+                  <Edge From="18" To="21" Label="Source1" />
+                  <Edge From="19" To="20" Label="Source1" />
+                  <Edge From="20" To="21" Label="Source2" />
+                  <Edge From="21" To="22" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>

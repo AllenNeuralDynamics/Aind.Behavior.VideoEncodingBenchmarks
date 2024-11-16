@@ -14,14 +14,12 @@ readme = "README.md"
 dynamic = ["version"]
 
 dependencies = [
-  "aind_behavior_services@git+https://github.com/AllenNeuralDynamics/Aind.Behavior.Services@0.8.0-rc3",
+  "aind_behavior_services>=0.8, <0.9",
 ]
 
 [project.optional-dependencies]
 
-aind-services = [
-    "aind_behavior_services[aind-services]@git+https://github.com/AllenNeuralDynamics/Aind.Behavior.Services@0.8.0-rc3",
-  ]
+launcher = ["aind_behavior_experiment_launcher[aind-services]>=0.2.0"]
 
 linters = [
   'ruff',
@@ -36,6 +34,10 @@ docs = [
     'myst_parser',
     'sphinx-jsonschema'
 ]
+
+[project.scripts]
+clabe = "aind_behavior_video_encoding_benchmarks.launcher:main"
+regenerate = "aind_behavior_video_encoding_benchmarks.regenerate:main"
 
 [tool.setuptools.packages.find]
 where = ["src/DataSchemas"]
