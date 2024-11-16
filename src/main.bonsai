@@ -112,15 +112,13 @@
             </Expression>
             <Expression xsi:type="PropertyMapping">
               <PropertyMappings>
-                <Property Name="Subject" Selector="Subject" />
                 <Property Name="RootFolder" Selector="RootPath" />
-                <Property Name="DateTimeOffset" Selector="Date" />
+                <Property Name="SessionName" Selector="SessionName" />
               </PropertyMappings>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:GenerateRootLoggingPath.bonsai">
-              <RootFolder>C:\data\</RootFolder>
-              <Subject>672102</Subject>
-              <DateTimeOffset>0001-01-01T00:00:00.0000000+00:00</DateTimeOffset>
+            <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:GenerateRootLoggingPathFromSession.bonsai">
+              <RootFolder />
+              <SessionName xsi:nil="true" />
               <SubjectName>LoggingRootPath</SubjectName>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -1360,7 +1358,9 @@
           </Edges>
         </Workflow>
       </Expression>
-      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping">
+        <VisualizerType xsi:type="TypeMapping" TypeArguments="gui:TableLayoutPanelVisualizer" />
+      </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>Controller0Visualization</Name>
         <Workflow>
@@ -1408,7 +1408,9 @@
           </Edges>
         </Workflow>
       </Expression>
-      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping">
+        <VisualizerType xsi:type="TypeMapping" TypeArguments="gui:TableLayoutPanelVisualizer" />
+      </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>Controller1Visualization</Name>
         <Workflow>
@@ -1456,7 +1458,9 @@
           </Edges>
         </Workflow>
       </Expression>
-      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping">
+        <VisualizerType xsi:type="TypeMapping" TypeArguments="gui:TableLayoutPanelVisualizer" />
+      </Expression>
       <Expression xsi:type="gui:TabControlBuilder">
         <gui:Name>UserInterface</gui:Name>
         <gui:Enabled>true</gui:Enabled>
