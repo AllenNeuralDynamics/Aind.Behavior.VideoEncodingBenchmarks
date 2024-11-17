@@ -45,7 +45,7 @@ class AindVideoEncodingBenchmarksLauncher(
         )
 
 
-def make_launcher() -> behavior_launcher.BehaviorLauncher:
+def make_launcher() -> AindVideoEncodingBenchmarksLauncher:
     data_dir = r"C:/Data"
     remote_dir = Path(r"\\allen\aind\scratch\vr-foraging\data")
     srv = behavior_launcher.BehaviorServicesFactoryManager()
@@ -60,7 +60,7 @@ def make_launcher() -> behavior_launcher.BehaviorLauncher:
         )
     )
 
-    return behavior_launcher.BehaviorLauncher(
+    return AindVideoEncodingBenchmarksLauncher(
         rig_schema_model=AindVideoEncodingBenchmarksRig,
         session_schema_model=AindBehaviorSessionModel,
         task_logic_schema_model=AindVideoEncodingBenchmarksTaskLogic,
