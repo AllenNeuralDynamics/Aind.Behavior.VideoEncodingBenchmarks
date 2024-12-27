@@ -21,10 +21,11 @@ dependencies = [
 
 launcher = ["aind_behavior_experiment_launcher[aind-services]>=0.2.0"]
 
-linters = [
-  'ruff',
-  'codespell',
+dev = ["aind_behavior_video_encoding_benchmarks[launcher]",
+    "ruff",
+    "codespell"
 ]
+
 
 docs = [
     'Sphinx<7.3',
