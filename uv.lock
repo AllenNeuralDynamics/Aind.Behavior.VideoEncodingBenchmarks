@@ -61,7 +61,6 @@ wheels = [
 
 [[package]]
 name = "aind-behavior-video-encoding-benchmarks"
-version = "0.2.2"
 source = { editable = "." }
 dependencies = [
     { name = "aind-behavior-services" },
