@@ -2,8 +2,8 @@ from pathlib import Path
 from typing import Optional
 
 import aind_behavior_experiment_launcher.launcher.behavior_launcher as behavior_launcher
-from aind_behavior_experiment_launcher.apps.app_service import BonsaiApp
-from aind_behavior_experiment_launcher.resource_monitor.resource_monitor_service import (
+from aind_behavior_experiment_launcher.apps import BonsaiApp
+from aind_behavior_experiment_launcher.resource_monitor import (
     ResourceMonitor,
     available_storage_constraint_factory,
     remote_dir_exists_constraint_factory,
@@ -25,7 +25,7 @@ class AindVideoEncodingBenchmarksLauncher(
     @override
     def _prompt_session_input(self, directory: Optional[str] = None) -> AindBehaviorSessionModel:
         experimenter = self._ui_helper.prompt_experimenter(strict=True)
-        subject = input("Enter subject name:")
+        subject = input("Enter subject name: [defaults to 00000]")
         if subject == "":
             subject = "00000"
         notes = self._ui_helper.prompt_get_notes()
@@ -47,7 +47,7 @@ class AindVideoEncodingBenchmarksLauncher(
 
 def make_launcher() -> AindVideoEncodingBenchmarksLauncher:
     data_dir = r"C:/Data"
-    remote_dir = Path(r"\\allen\aind\scratch\vr-foraging\data")
+    remote_dir = Path(r"\\allen\aind\scratch\video-encoding-benchmarks\data")
     srv = behavior_launcher.BehaviorServicesFactoryManager()
     srv.attach_bonsai_app(BonsaiApp(r"./src/main.bonsai"))
     srv.attach_data_transfer(behavior_launcher.robocopy_data_transfer_factory(Path(remote_dir)))
