@@ -1,4 +1,5 @@
 version = 1
+revision = 1
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version >= '3.12'",
@@ -22,18 +23,19 @@ wheels = [
 
 [[package]]
 name = "aind-behavior-experiment-launcher"
-version = "0.3.1"
+version = "0.3.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aind-behavior-services" },
     { name = "aind-slims-api" },
     { name = "gitpython" },
     { name = "pydantic" },
+    { name = "rich" },
     { name = "semver" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9d/ab/21f987696ab81333c211a274e28b2a0b4c17d5b6462f1a37b952b4da3ddb/aind_behavior_experiment_launcher-0.3.1.tar.gz", hash = "sha256:65fc2b424791f3702c5ae7a145f1b26e3ec517ccec42419ab7e09aa5d3c36178", size = 120450 }
+sdist = { url = "https://files.pythonhosted.org/packages/f7/fc/c54ba6989512395fc54dcc43a89d43a8a8d8aa25aac63197bf2ffa36bdd8/aind_behavior_experiment_launcher-0.3.3.tar.gz", hash = "sha256:92f797720f6f45eb136b2d002b734400092b04fc4b5201954ca8bc53f43ed722", size = 121723 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7c/3e/1c97990a8a50d6b94f30eb68f8f21dd2200d627f6bca05c2501d755ee5fa/aind_behavior_experiment_launcher-0.3.1-py3-none-any.whl", hash = "sha256:a3da47f64b7a4696be121ebb86a7c8a4c1b9c706b864480eee27ea71f8ad2ea3", size = 31598 },
+    { url = "https://files.pythonhosted.org/packages/bc/07/35ddfc458f7ffc7e0bac7e4e536365e0d0447f33238a683486826f07fcb1/aind_behavior_experiment_launcher-0.3.3-py3-none-any.whl", hash = "sha256:9c5913f1962968adec8ba98e354aeff1a7f6e47eea761b01055cbfad65b775b4", size = 31786 },
 ]
 
 [package.optional-dependencies]
@@ -44,7 +46,7 @@ aind-services = [
 
 [[package]]
 name = "aind-behavior-services"
-version = "0.8.9"
+version = "0.10.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aind-behavior-curriculum" },
@@ -54,9 +56,9 @@ dependencies = [
     { name = "scikit-learn" },
     { name = "semver" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/bb/97/a0bac65bcc2f617c12741e03501275ee132770458e42ab0a9d8f84cc7239/aind_behavior_services-0.8.9.tar.gz", hash = "sha256:101c488ecb460e86e0013c100ec049936025c52fc6c500fb7ae0f4004d00cd9a", size = 167377 }
+sdist = { url = "https://files.pythonhosted.org/packages/d0/d8/2fbae3376c1e70d2e3e4c39926d0b0290bdb1e9267fb5d331a2d9644f73b/aind_behavior_services-0.10.2.tar.gz", hash = "sha256:6f84521e91377056444de1896d86864729624aa94eccf164b54cb0f8b30f6a43", size = 135934 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/eb/79/1eb0c2dfbc865be966a6b96aac8fd92f18cf45b7e7dd7f943b63e86fc67b/aind_behavior_services-0.8.9-py3-none-any.whl", hash = "sha256:9ce8c0e750f51e30470fe2aff056852ac98745572cdc6e162f05b46371d2d95e", size = 84075 },
+    { url = "https://files.pythonhosted.org/packages/07/ce/c3bc2c74dc27553dc656b7a7ee89ec7425de7eacd13be7b490a9c2025b1f/aind_behavior_services-0.10.2-py3-none-any.whl", hash = "sha256:ee4f5365db6ecd427b3fffe43688db79105b7244582262a36b38f6d7dafc25c2", size = 49479 },
 ]
 
 [[package]]
@@ -86,8 +88,8 @@ launcher = [
 
 [package.metadata]
 requires-dist = [
-    { name = "aind-behavior-experiment-launcher", extras = ["aind-services"], marker = "extra == 'launcher'", specifier = ">=0.2.0" },
-    { name = "aind-behavior-services", specifier = ">=0.8,<0.9" },
+    { name = "aind-behavior-experiment-launcher", extras = ["aind-services"], marker = "extra == 'launcher'" },
+    { name = "aind-behavior-services", specifier = ">=0.10,<0.11" },
     { name = "aind-behavior-video-encoding-benchmarks", extras = ["launcher"], marker = "extra == 'dev'" },
     { name = "autodoc-pydantic", extras = ["erdantic"], marker = "extra == 'docs'" },
     { name = "codespell", marker = "extra == 'dev'" },
@@ -98,6 +100,7 @@ requires-dist = [
     { name = "sphinx-jinja", marker = "extra == 'docs'" },
     { name = "sphinx-jsonschema", marker = "extra == 'docs'" },
 ]
+provides-extras = ["launcher", "dev", "docs"]
 
 [[package]]
 name = "aind-codeocean-pipeline-monitor"

@@ -97,8 +97,8 @@
     "HarpBehavior": {
       "properties": {
         "device_type": {
-          "const": "behavior",
-          "default": "behavior",
+          "const": "Behavior",
+          "default": "Behavior",
           "title": "Device Type",
           "type": "string"
         },
@@ -157,11 +157,11 @@
       "title": "HarpBehavior",
       "type": "object"
     },
-    "HarpClockGenerator": {
+    "HarpWhiteRabbit": {
       "properties": {
         "device_type": {
-          "const": "clockgenerator",
-          "default": "clockgenerator",
+          "const": "WhiteRabbit",
+          "default": "WhiteRabbit",
           "title": "Device Type",
           "type": "string"
         },
@@ -190,8 +190,8 @@
           ]
         },
         "who_am_i": {
-          "const": 1158,
-          "default": 1158,
+          "const": 1404,
+          "default": 1404,
           "title": "Who Am I",
           "type": "integer"
         },
@@ -226,7 +226,7 @@
       "required": [
         "port_name"
       ],
-      "title": "HarpClockGenerator",
+      "title": "HarpWhiteRabbit",
       "type": "object"
     },
     "Rect": {
@@ -797,14 +797,14 @@
   },
   "properties": {
     "aind_behavior_services_pkg_version": {
-      "default": "0.8.9",
+      "default": "0.10.2",
       "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
       "title": "aind_behavior_services package version",
       "type": "string"
     },
     "version": {
-      "const": "0.1.2",
-      "default": "0.1.2",
+      "const": "0.2.0",
+      "default": "0.2.0",
       "title": "Version",
       "type": "string"
     },
@@ -847,7 +847,7 @@
       "description": "Harp behavior board. Will be the source of triggers for the two camera controllers."
     },
     "harp_clock_generator": {
-      "$ref": "#/definitions/HarpClockGenerator",
+      "$ref": "#/definitions/HarpWhiteRabbit",
       "description": "Harp clock generator."
     }
   },
