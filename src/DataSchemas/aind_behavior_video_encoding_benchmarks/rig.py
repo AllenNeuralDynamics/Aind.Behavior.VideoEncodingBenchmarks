@@ -8,7 +8,7 @@ import aind_behavior_services.rig as rig
 from aind_behavior_services.rig import AindBehaviorRigModel
 from pydantic import Field
 
-__version__ = "0.1.2"
+__version__ = "0.2.0"
 
 
 class AindVideoEncodingBenchmarksRig(AindBehaviorRigModel):
@@ -25,4 +25,4 @@ class AindVideoEncodingBenchmarksRig(AindBehaviorRigModel):
         ...,
         description="Harp behavior board. Will be the source of triggers for the two camera controllers.",
     )
-    harp_clock_generator: rig.HarpClockGenerator = Field(..., description="Harp clock generator.")
+    harp_clock_generator: rig.HarpWhiteRabbit = Field(..., description="Harp clock generator.")

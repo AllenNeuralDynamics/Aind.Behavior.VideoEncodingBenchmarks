@@ -294,7 +294,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     public partial class HarpBehavior
     {
     
-        private string _deviceType = "behavior";
+        private string _deviceType = "Behavior";
     
         private BaseModel _additionalSettings;
     
@@ -455,16 +455,16 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.3.0.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.CombinatorAttribute()]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
-    public partial class HarpClockGenerator
+    public partial class HarpWhiteRabbit
     {
     
-        private string _deviceType = "clockgenerator";
+        private string _deviceType = "WhiteRabbit";
     
         private BaseModel _additionalSettings;
     
         private BaseModel _calibration;
     
-        private int _whoAmI = 1158;
+        private int _whoAmI = 1404;
     
         private string _serialNumber;
     
@@ -472,11 +472,11 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     
         private System.Collections.Generic.List<ConnectedClockOutput> _connectedClockOutputs = new System.Collections.Generic.List<ConnectedClockOutput>();
     
-        public HarpClockGenerator()
+        public HarpWhiteRabbit()
         {
         }
     
-        protected HarpClockGenerator(HarpClockGenerator other)
+        protected HarpWhiteRabbit(HarpWhiteRabbit other)
         {
             _deviceType = other._deviceType;
             _additionalSettings = other._additionalSettings;
@@ -601,14 +601,14 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             }
         }
     
-        public System.IObservable<HarpClockGenerator> Process()
+        public System.IObservable<HarpWhiteRabbit> Process()
         {
-            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new HarpClockGenerator(this)));
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new HarpWhiteRabbit(this)));
         }
     
-        public System.IObservable<HarpClockGenerator> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<HarpWhiteRabbit> Process<TSource>(System.IObservable<TSource> source)
         {
-            return System.Reactive.Linq.Observable.Select(source, _ => new HarpClockGenerator(this));
+            return System.Reactive.Linq.Observable.Select(source, _ => new HarpWhiteRabbit(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
@@ -1816,9 +1816,9 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     public partial class AindVideoEncodingBenchmarksRig
     {
     
-        private string _aindBehaviorServicesPkgVersion = "0.8.9";
+        private string _aindBehaviorServicesPkgVersion = "0.10.2";
     
-        private string _version = "0.1.2";
+        private string _version = "0.2.0";
     
         private string _computerName;
     
@@ -1830,7 +1830,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     
         private HarpBehavior _harpBehavior = new HarpBehavior();
     
-        private HarpClockGenerator _harpClockGenerator = new HarpClockGenerator();
+        private HarpWhiteRabbit _harpClockGenerator = new HarpWhiteRabbit();
     
         public AindVideoEncodingBenchmarksRig()
         {
@@ -1969,7 +1969,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [Newtonsoft.Json.JsonPropertyAttribute("harp_clock_generator", Required=Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DescriptionAttribute("Harp clock generator.")]
-        public HarpClockGenerator HarpClockGenerator
+        public HarpWhiteRabbit HarpClockGenerator
         {
             get
             {
@@ -2245,9 +2245,9 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
             return Process<HarpBehavior>(source);
         }
 
-        public System.IObservable<string> Process(System.IObservable<HarpClockGenerator> source)
+        public System.IObservable<string> Process(System.IObservable<HarpWhiteRabbit> source)
         {
-            return Process<HarpClockGenerator>(source);
+            return Process<HarpWhiteRabbit>(source);
         }
 
         public System.IObservable<string> Process(System.IObservable<Rect> source)
@@ -2293,7 +2293,7 @@ namespace AindVideoEncodingBenchmarksSchemas.Rig
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<CameraControllerSpinnakerCamera>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<ConnectedClockOutput>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<HarpBehavior>))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<HarpClockGenerator>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<HarpWhiteRabbit>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Rect>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<SpinnakerCamera>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriter>))]

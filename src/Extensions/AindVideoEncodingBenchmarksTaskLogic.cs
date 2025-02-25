@@ -17,7 +17,7 @@ namespace AindVideoEncodingBenchmarksSchemas.TaskLogic
     
         private double? _rngSeed;
     
-        private string _aindBehaviorServicesPkgVersion = "0.8.9";
+        private string _aindBehaviorServicesPkgVersion = "0.10.2";
     
         private bool _saveRawVideo = false;
     
