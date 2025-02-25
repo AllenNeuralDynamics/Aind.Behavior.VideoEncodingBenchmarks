@@ -61,7 +61,7 @@ def main(path_seed: str = "./local/{schema}.json"):
         ),
         triggered_camera_controller_1=None,
         harp_behavior=rig.HarpBehavior(port_name="COM3"),
-        harp_clock_generator=rig.HarpClockGenerator(port_name="COM4"),
+        harp_clock_generator=rig.HarpWhiteRabbit(port_name="COM4"),
     )
 
     os.makedirs(os.path.dirname(path_seed), exist_ok=True)
