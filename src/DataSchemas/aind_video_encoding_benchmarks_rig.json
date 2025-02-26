@@ -66,34 +66,6 @@
       "title": "CameraController[SpinnakerCamera]",
       "type": "object"
     },
-    "ConnectedClockOutput": {
-      "properties": {
-        "target_device": {
-          "default": null,
-          "description": "Optional device name to provide user additional information",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "title": "Target Device"
-        },
-        "output_channel": {
-          "description": "Output channel",
-          "minimum": 0,
-          "title": "Output Channel",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "output_channel"
-      ],
-      "title": "ConnectedClockOutput",
-      "type": "object"
-    },
     "HarpBehavior": {
       "properties": {
         "device_type": {
@@ -155,78 +127,6 @@
         "port_name"
       ],
       "title": "HarpBehavior",
-      "type": "object"
-    },
-    "HarpWhiteRabbit": {
-      "properties": {
-        "device_type": {
-          "const": "WhiteRabbit",
-          "default": "WhiteRabbit",
-          "title": "Device Type",
-          "type": "string"
-        },
-        "additional_settings": {
-          "default": null,
-          "description": "Additional settings",
-          "oneOf": [
-            {
-              "$ref": "#/definitions/BaseModel"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "calibration": {
-          "default": null,
-          "description": "Calibration",
-          "oneOf": [
-            {
-              "$ref": "#/definitions/BaseModel"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "who_am_i": {
-          "const": 1404,
-          "default": 1404,
-          "title": "Who Am I",
-          "type": "integer"
-        },
-        "serial_number": {
-          "default": null,
-          "description": "Device serial number",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "title": "Serial Number"
-        },
-        "port_name": {
-          "description": "Device port name",
-          "title": "Port Name",
-          "type": "string"
-        },
-        "connected_clock_outputs": {
-          "default": [],
-          "description": "Connected clock outputs",
-          "items": {
-            "$ref": "#/definitions/ConnectedClockOutput"
-          },
-          "title": "Connected Clock Outputs",
-          "type": "array"
-        }
-      },
-      "required": [
-        "port_name"
-      ],
-      "title": "HarpWhiteRabbit",
       "type": "object"
     },
     "Rect": {
@@ -803,8 +703,8 @@
       "type": "string"
     },
     "version": {
-      "const": "0.2.0",
-      "default": "0.2.0",
+      "const": "0.2.1",
+      "default": "0.2.1",
       "title": "Version",
       "type": "string"
     },
@@ -845,16 +745,11 @@
     "harp_behavior": {
       "$ref": "#/definitions/HarpBehavior",
       "description": "Harp behavior board. Will be the source of triggers for the two camera controllers."
-    },
-    "harp_clock_generator": {
-      "$ref": "#/definitions/HarpWhiteRabbit",
-      "description": "Harp clock generator."
     }
   },
   "required": [
     "rig_name",
-    "harp_behavior",
-    "harp_clock_generator"
+    "harp_behavior"
   ],
   "title": "AindVideoEncodingBenchmarksRig",
   "type": "object"
