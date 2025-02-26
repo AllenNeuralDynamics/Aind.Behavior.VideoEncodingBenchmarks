@@ -588,31 +588,11 @@
                           <DeviceName>Behavior</DeviceName>
                           <HarpDeviceName>Behavior</HarpDeviceName>
                         </Expression>
-                        <Expression xsi:type="SubscribeSubject">
-                          <Name>HarpClockGenEvents</Name>
-                        </Expression>
-                        <Expression xsi:type="SubscribeSubject">
-                          <Name>Modality</Name>
-                        </Expression>
-                        <Expression xsi:type="PropertyMapping">
-                          <PropertyMappings>
-                            <Property Name="Modality" />
-                          </PropertyMappings>
-                        </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:LogHarpDevice.bonsai">
-                          <SubjectName>LoggingRootPath</SubjectName>
-                          <Modality>Behavior</Modality>
-                          <DeviceName>ClockGenerator</DeviceName>
-                          <HarpDeviceName>TimestampGeneratorGen3</HarpDeviceName>
-                        </Expression>
                       </Nodes>
                       <Edges>
                         <Edge From="0" To="3" Label="Source1" />
                         <Edge From="1" To="2" Label="Source1" />
                         <Edge From="2" To="3" Label="Source2" />
-                        <Edge From="4" To="7" Label="Source1" />
-                        <Edge From="5" To="6" Label="Source1" />
-                        <Edge From="6" To="7" Label="Source2" />
                       </Edges>
                     </Workflow>
                   </Expression>
@@ -661,35 +641,6 @@
                           <DeviceName>HarpCommands/Behavior</DeviceName>
                           <HarpDeviceName>Behavior</HarpDeviceName>
                         </Expression>
-                        <Expression xsi:type="SubscribeSubject">
-                          <Name>HarpClockGenCommands</Name>
-                        </Expression>
-                        <Expression xsi:type="SubscribeSubject">
-                          <Name>HarpSeconds</Name>
-                        </Expression>
-                        <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="rx:WithLatestFrom" />
-                        </Expression>
-                        <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="p7:ModifyMessage">
-                            <p7:Address xsi:nil="true" />
-                            <p7:MessageTypeModified xsi:nil="true" />
-                          </Combinator>
-                        </Expression>
-                        <Expression xsi:type="SubscribeSubject">
-                          <Name>Modality</Name>
-                        </Expression>
-                        <Expression xsi:type="PropertyMapping">
-                          <PropertyMappings>
-                            <Property Name="Modality" />
-                          </PropertyMappings>
-                        </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:LogHarpDevice.bonsai">
-                          <SubjectName>LoggingRootPath</SubjectName>
-                          <Modality>Behavior</Modality>
-                          <DeviceName>HarpCommands/ClockGenerator</DeviceName>
-                          <HarpDeviceName>TimestampGeneratorGen3</HarpDeviceName>
-                        </Expression>
                       </Nodes>
                       <Edges>
                         <Edge From="0" To="1" Label="Source1" />
@@ -700,12 +651,6 @@
                         <Edge From="6" To="9" Label="Source1" />
                         <Edge From="7" To="8" Label="Source1" />
                         <Edge From="8" To="9" Label="Source2" />
-                        <Edge From="10" To="12" Label="Source1" />
-                        <Edge From="11" To="12" Label="Source2" />
-                        <Edge From="12" To="13" Label="Source1" />
-                        <Edge From="13" To="16" Label="Source1" />
-                        <Edge From="14" To="15" Label="Source1" />
-                        <Edge From="15" To="16" Label="Source2" />
                       </Edges>
                     </Workflow>
                   </Expression>
