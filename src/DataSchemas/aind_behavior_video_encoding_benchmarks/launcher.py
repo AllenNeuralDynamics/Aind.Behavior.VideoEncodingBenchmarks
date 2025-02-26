@@ -8,12 +8,15 @@ from aind_behavior_experiment_launcher.resource_monitor import (
     available_storage_constraint_factory,
     remote_dir_exists_constraint_factory,
 )
+from aind_behavior_experiment_launcher.ui_helper import prompt_field_from_input
 from aind_behavior_services.session import AindBehaviorSessionModel
+from pydantic import ValidationError
 from typing_extensions import override
 
 from aind_behavior_video_encoding_benchmarks.rig import AindVideoEncodingBenchmarksRig
 from aind_behavior_video_encoding_benchmarks.task_logic import (
     AindVideoEncodingBenchmarksTaskLogic,
+    AindVideoEncodingBenchmarksTaskParameters,
 )
 
 
@@ -42,6 +45,22 @@ class AindVideoEncodingBenchmarksLauncher(
             allow_dirty_repo=self._debug_mode or self.allow_dirty,
             skip_hardware_validation=self.skip_hardware_validation,
             experiment_version="",  # Will be set later
+        )
+
+    @override
+    def _prompt_task_logic_input(self, *args, **kwargs) -> AindVideoEncodingBenchmarksTaskLogic:
+        save_raw = None
+        while save_raw is None:
+            try:
+                save_raw = prompt_field_from_input(
+                    AindVideoEncodingBenchmarksTaskParameters, "save_raw_video", default=False
+                )
+            except ValidationError as e:
+                self._logger.error("Failed to parse input: %s", e)
+            else:
+                self._logger.info("save_raw_video set to: %s", save_raw)
+        return AindVideoEncodingBenchmarksTaskLogic(
+            task_parameters=AindVideoEncodingBenchmarksTaskParameters(save_raw_video=save_raw)
         )
 
 

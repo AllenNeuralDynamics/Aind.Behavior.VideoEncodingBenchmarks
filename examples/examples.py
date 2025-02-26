@@ -15,7 +15,6 @@ def main(path_seed: str = "./local/{schema}.json"):
         date=datetime.datetime.now(tz=datetime.timezone.utc),
         experiment="AindVideoEncodingBenchmarks",
         root_path="c://",
-        remote_path=None,  # change to a remote valid path to trigger robocopy at the end of the session
         subject="Test",
         notes="test session",
         experiment_version="0.0.0",
@@ -61,7 +60,6 @@ def main(path_seed: str = "./local/{schema}.json"):
         ),
         triggered_camera_controller_1=None,
         harp_behavior=rig.HarpBehavior(port_name="COM3"),
-        harp_clock_generator=rig.HarpWhiteRabbit(port_name="COM4"),
     )
 
     os.makedirs(os.path.dirname(path_seed), exist_ok=True)
