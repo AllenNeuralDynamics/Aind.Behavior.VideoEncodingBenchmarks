@@ -215,6 +215,11 @@
                 <zmq:ConnectionString>&gt;tcp://localhost:5557</zmq:ConnectionString>
               </Combinator>
             </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:ObserveOn">
+                <rx:Scheduler>TaskPoolScheduler</rx:Scheduler>
+              </Combinator>
+            </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Last.Buffer</Selector>
             </Expression>
@@ -234,6 +239,7 @@
             <Edge From="8" To="9" Label="Source1" />
             <Edge From="9" To="10" Label="Source1" />
             <Edge From="10" To="11" Label="Source1" />
+            <Edge From="11" To="12" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
