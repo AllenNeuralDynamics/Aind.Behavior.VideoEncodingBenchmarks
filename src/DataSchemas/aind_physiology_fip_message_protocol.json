@@ -29,7 +29,8 @@
         "status"
       ],
       "title": "HeartbeatPayload",
-      "type": "object"
+      "type": "object",
+      "x-sgen-typename": "AllenNeuralDynamics.AindBehaviorServices.MessageProtocol.HeartbeatPayload"
     },
     "HeartbeatStatus": {
       "description": "Enumeration of possible heartbeat status values.\n\nRepresents the health status of a system component,\nwith higher values indicating more severe issues.\n\nExamples:\n    ```python\n    HeartbeatStatus.OK                            # <HeartbeatStatus.OK: 0>\n    HeartbeatStatus.CRITICAL > HeartbeatStatus.WARNING  # True\n    int(HeartbeatStatus.ERROR)                    # 2\n    ```",
@@ -46,7 +47,8 @@
         "Warning",
         "Error",
         "Critical"
-      ]
+      ],
+      "x-sgen-typename": "AllenNeuralDynamics.AindBehaviorServices.MessageProtocol.HeartbeatStatus"
     },
     "LogLevel": {
       "description": "Enumeration of log levels for the logging system.\n\nFollows standard Python logging levels with integer values\nthat allow for easy comparison and filtering.\n\nExamples:\n    ```python\n    LogLevel.ERROR > LogLevel.WARNING  # True\n    LogLevel.DEBUG.value               # 10\n    str(LogLevel.INFO)                 # 'LogLevel.INFO'\n    ```",
@@ -67,7 +69,8 @@
         "Info",
         "Debug",
         "Notset"
-      ]
+      ],
+      "x-sgen-typename": "AllenNeuralDynamics.AindBehaviorServices.MessageProtocol.LogLevel"
     },
     "LogPayload": {
       "description": "Payload for log messages containing logging information.\n\nThis payload carries log data including the message content,\nseverity level, optional context, and application version.\n\nAttributes:\n    message: The actual log message text\n    level: Severity level of the log entry\n    context: Optional additional data related to the log\n    application_version: Version of the application generating the log\n\nExamples:\n    ```python\n    log_payload = LogPayload(\n        message=\"System startup complete\",\n        level=LogLevel.INFO,\n        context={\"operator\": \"John Doe\"},\n        application_version=\"1.0.0\"\n    )\n    print(log_payload.level)  # LogLevel.INFO\n    ```",
@@ -117,7 +120,8 @@
         "message"
       ],
       "title": "LogPayload",
-      "type": "object"
+      "type": "object",
+      "x-sgen-typename": "AllenNeuralDynamics.AindBehaviorServices.MessageProtocol.LogPayload"
     },
     "Message": {
       "$ref": "#/$defs/_Message_Any_",
@@ -131,7 +135,8 @@
         "event"
       ],
       "title": "MessageType",
-      "type": "string"
+      "type": "string",
+      "x-sgen-typename": "AllenNeuralDynamics.AindBehaviorServices.MessageProtocol.MessageType"
     },
     "RegisteredMessages": {
       "properties": {

@@ -9,376 +9,13 @@ namespace AindJustFramesSchemas.MessageProtocol
 {
     #pragma warning disable // Disable all warnings
 
-    /// <summary>
-    /// Payload for heartbeat messages indicating system health status.
-    ///
-    ///Heartbeat messages are used to monitor the health and availability
-    ///of system components. They include a status indicator and optional
-    ///context information.
-    ///
-    ///Attributes:
-    ///    context: Optional additional data about the system state
-    ///    status: Current health status of the component
-    ///
-    ///Examples:
-    ///    ```python
-    ///    heartbeat = HeartbeatPayload(
-    ///        status=HeartbeatStatus.OK,
-    ///        context={"cpu_usage": 0.25, "memory_usage": 0.60}
-    ///    )
-    ///    print(heartbeat.status)  # HeartbeatStatus.OK
-    ///
-    ///    warning_heartbeat = HeartbeatPayload(
-    ///        status=HeartbeatStatus.WARNING,
-    ///        context={"disk_space_low": True}
-    ///    )
-    ///    ```
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
-    [System.ComponentModel.DescriptionAttribute(@"Payload for heartbeat messages indicating system health status.
-
-    Heartbeat messages are used to monitor the health and availability
-    of system components. They include a status indicator and optional
-    context information.
-
-    Attributes:
-        context: Optional additional data about the system state
-        status: Current health status of the component
-
-    Examples:
-        ```python
-        heartbeat = HeartbeatPayload(
-            status=HeartbeatStatus.OK,
-            context={""cpu_usage"": 0.25, ""memory_usage"": 0.60}
-        )
-        print(heartbeat.status)  # HeartbeatStatus.OK
-
-        warning_heartbeat = HeartbeatPayload(
-            status=HeartbeatStatus.WARNING,
-            context={""disk_space_low"": True}
-        )
-        ```")]
-    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
-    [Bonsai.CombinatorAttribute(MethodName="Generate")]
-    public partial class HeartbeatPayload : RegisteredPayload
-    {
-    
-        private object _context;
-    
-        private HeartbeatStatus _status;
-    
-        public HeartbeatPayload()
-        {
-        }
-    
-        protected HeartbeatPayload(HeartbeatPayload other) : 
-                base(other)
-        {
-            _context = other._context;
-            _status = other._status;
-        }
-    
-        /// <summary>
-        /// Additional context for the heartbeat message.
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("context")]
-        [System.ComponentModel.DescriptionAttribute("Additional context for the heartbeat message.")]
-        public object Context
-        {
-            get
-            {
-                return _context;
-            }
-            set
-            {
-                _context = value;
-            }
-        }
-    
-        /// <summary>
-        /// The status of the heartbeat message
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("status", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("The status of the heartbeat message")]
-        public HeartbeatStatus Status
-        {
-            get
-            {
-                return _status;
-            }
-            set
-            {
-                _status = value;
-            }
-        }
-    
-        public System.IObservable<HeartbeatPayload> Generate()
-        {
-            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new HeartbeatPayload(this)));
-        }
-    
-        public System.IObservable<HeartbeatPayload> Generate<TSource>(System.IObservable<TSource> source)
-        {
-            return System.Reactive.Linq.Observable.Select(source, _ => new HeartbeatPayload(this));
-        }
-    
-        protected override bool PrintMembers(System.Text.StringBuilder stringBuilder)
-        {
-            if (base.PrintMembers(stringBuilder))
-            {
-                stringBuilder.Append(", ");
-            }
-            stringBuilder.Append("Context = " + _context + ", ");
-            stringBuilder.Append("Status = " + _status);
-            return true;
-        }
-    }
-
-
-    /// <summary>
-    /// Enumeration of possible heartbeat status values.
-    ///
-    ///Represents the health status of a system component,
-    ///with higher values indicating more severe issues.
-    ///
-    ///Examples:
-    ///    ```python
-    ///    HeartbeatStatus.OK                            # <HeartbeatStatus.OK: 0>
-    ///    HeartbeatStatus.CRITICAL > HeartbeatStatus.WARNING  # True
-    ///    int(HeartbeatStatus.ERROR)                    # 2
-    ///    ```
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
-    public enum HeartbeatStatus
-    {
-    
-        [System.Runtime.Serialization.EnumMemberAttribute(Value="0")]
-        Ok = 0,
-    
-        [System.Runtime.Serialization.EnumMemberAttribute(Value="1")]
-        Warning = 1,
-    
-        [System.Runtime.Serialization.EnumMemberAttribute(Value="2")]
-        Error = 2,
-    
-        [System.Runtime.Serialization.EnumMemberAttribute(Value="3")]
-        Critical = 3,
-    }
-
-
-    /// <summary>
-    /// Enumeration of log levels for the logging system.
-    ///
-    ///Follows standard Python logging levels with integer values
-    ///that allow for easy comparison and filtering.
-    ///
-    ///Examples:
-    ///    ```python
-    ///    LogLevel.ERROR > LogLevel.WARNING  # True
-    ///    LogLevel.DEBUG.value               # 10
-    ///    str(LogLevel.INFO)                 # 'LogLevel.INFO'
-    ///    ```
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
-    public enum LogLevel
-    {
-    
-        [System.Runtime.Serialization.EnumMemberAttribute(Value="50")]
-        Critical = 50,
-    
-        [System.Runtime.Serialization.EnumMemberAttribute(Value="40")]
-        Error = 40,
-    
-        [System.Runtime.Serialization.EnumMemberAttribute(Value="30")]
-        Warning = 30,
-    
-        [System.Runtime.Serialization.EnumMemberAttribute(Value="20")]
-        Info = 20,
-    
-        [System.Runtime.Serialization.EnumMemberAttribute(Value="10")]
-        Debug = 10,
-    
-        [System.Runtime.Serialization.EnumMemberAttribute(Value="0")]
-        Notset = 0,
-    }
-
-
-    /// <summary>
-    /// Payload for log messages containing logging information.
-    ///
-    ///This payload carries log data including the message content,
-    ///severity level, optional context, and application version.
-    ///
-    ///Attributes:
-    ///    message: The actual log message text
-    ///    level: Severity level of the log entry
-    ///    context: Optional additional data related to the log
-    ///    application_version: Version of the application generating the log
-    ///
-    ///Examples:
-    ///    ```python
-    ///    log_payload = LogPayload(
-    ///        message="System startup complete",
-    ///        level=LogLevel.INFO,
-    ///        context={"operator": "John Doe"},
-    ///        application_version="1.0.0"
-    ///    )
-    ///    print(log_payload.level)  # LogLevel.INFO
-    ///    ```
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
-    [System.ComponentModel.DescriptionAttribute(@"Payload for log messages containing logging information.
-
-    This payload carries log data including the message content,
-    severity level, optional context, and application version.
-
-    Attributes:
-        message: The actual log message text
-        level: Severity level of the log entry
-        context: Optional additional data related to the log
-        application_version: Version of the application generating the log
-
-    Examples:
-        ```python
-        log_payload = LogPayload(
-            message=""System startup complete"",
-            level=LogLevel.INFO,
-            context={""operator"": ""John Doe""},
-            application_version=""1.0.0""
-        )
-        print(log_payload.level)  # LogLevel.INFO
-        ```")]
-    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
-    [Bonsai.CombinatorAttribute(MethodName="Generate")]
-    public partial class LogPayload : RegisteredPayload
-    {
-    
-        private string _message;
-    
-        private LogLevel _level;
-    
-        private object _context;
-    
-        private string _applicationVersion;
-    
-        public LogPayload()
-        {
-            _level = AindJustFramesSchemas.MessageProtocol.LogLevel.Debug;
-        }
-    
-        protected LogPayload(LogPayload other) : 
-                base(other)
-        {
-            _message = other._message;
-            _level = other._level;
-            _context = other._context;
-            _applicationVersion = other._applicationVersion;
-        }
-    
-        /// <summary>
-        /// The message of the log
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("message", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("The message of the log")]
-        public string Message
-        {
-            get
-            {
-                return _message;
-            }
-            set
-            {
-                _message = value;
-            }
-        }
-    
-        /// <summary>
-        /// The level of the log message
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("level")]
-        [System.ComponentModel.DescriptionAttribute("The level of the log message")]
-        public LogLevel Level
-        {
-            get
-            {
-                return _level;
-            }
-            set
-            {
-                _level = value;
-            }
-        }
-    
-        /// <summary>
-        /// Additional context for the log message
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("context")]
-        [System.ComponentModel.DescriptionAttribute("Additional context for the log message")]
-        public object Context
-        {
-            get
-            {
-                return _context;
-            }
-            set
-            {
-                _context = value;
-            }
-        }
-    
-        /// <summary>
-        /// The version of the application
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("application_version")]
-        [System.ComponentModel.DescriptionAttribute("The version of the application")]
-        public string ApplicationVersion
-        {
-            get
-            {
-                return _applicationVersion;
-            }
-            set
-            {
-                _applicationVersion = value;
-            }
-        }
-    
-        public System.IObservable<LogPayload> Generate()
-        {
-            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new LogPayload(this)));
-        }
-    
-        public System.IObservable<LogPayload> Generate<TSource>(System.IObservable<TSource> source)
-        {
-            return System.Reactive.Linq.Observable.Select(source, _ => new LogPayload(this));
-        }
-    
-        protected override bool PrintMembers(System.Text.StringBuilder stringBuilder)
-        {
-            if (base.PrintMembers(stringBuilder))
-            {
-                stringBuilder.Append(", ");
-            }
-            stringBuilder.Append("Message = " + _message + ", ");
-            stringBuilder.Append("Level = " + _level + ", ");
-            stringBuilder.Append("Context = " + _context + ", ");
-            stringBuilder.Append("ApplicationVersion = " + _applicationVersion);
-            return true;
-        }
-    }
-
-
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class Message
     {
     
-        private MessageType _messageType;
+        private AllenNeuralDynamics.AindBehaviorServices.MessageProtocol.MessageType _messageType;
     
         private int _protocolVersion;
     
@@ -410,7 +47,7 @@ namespace AindJustFramesSchemas.MessageProtocol
     
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [Newtonsoft.Json.JsonPropertyAttribute("message_type", Required=Newtonsoft.Json.Required.Always)]
-        public MessageType MessageType
+        public AllenNeuralDynamics.AindBehaviorServices.MessageProtocol.MessageType MessageType
         {
             get
             {
@@ -559,39 +196,13 @@ namespace AindJustFramesSchemas.MessageProtocol
     }
 
 
-    /// <summary>
-    /// Enumeration of possible message types in the protocol.
-    ///
-    ///Examples:
-    ///    ```python
-    ///    MessageType.REQUEST  # 'request'
-    ///    MessageType.REPLY    # 'reply'
-    ///    MessageType.EVENT    # 'event'
-    ///    ```
-    /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-    public enum MessageType
-    {
-    
-        [System.Runtime.Serialization.EnumMemberAttribute(Value="request")]
-        Request = 0,
-    
-        [System.Runtime.Serialization.EnumMemberAttribute(Value="reply")]
-        Reply = 1,
-    
-        [System.Runtime.Serialization.EnumMemberAttribute(Value="event")]
-        Event = 2,
-    }
-
-
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class RegisteredMessages
     {
     
-        private MessageType _messageType;
+        private AllenNeuralDynamics.AindBehaviorServices.MessageProtocol.MessageType _messageType;
     
         private int _protocolVersion;
     
@@ -623,7 +234,7 @@ namespace AindJustFramesSchemas.MessageProtocol
     
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [Newtonsoft.Json.JsonPropertyAttribute("message_type", Required=Newtonsoft.Json.Required.Always)]
-        public MessageType MessageType
+        public AllenNeuralDynamics.AindBehaviorServices.MessageProtocol.MessageType MessageType
         {
             get
             {
@@ -774,8 +385,8 @@ namespace AindJustFramesSchemas.MessageProtocol
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Newtonsoft.Json.JsonConverter(typeof(JsonInheritanceConverter), "payload_type")]
-    [JsonInheritanceAttribute("HeartbeatPayload", typeof(HeartbeatPayload))]
-    [JsonInheritanceAttribute("LogPayload", typeof(LogPayload))]
+    [JsonInheritanceAttribute("HeartbeatPayload", typeof(AllenNeuralDynamics.AindBehaviorServices.MessageProtocol.HeartbeatPayload))]
+    [JsonInheritanceAttribute("LogPayload", typeof(AllenNeuralDynamics.AindBehaviorServices.MessageProtocol.LogPayload))]
     [JsonInheritanceAttribute("Start", typeof(StartPayload))]
     [JsonInheritanceAttribute("Stop", typeof(StopPayload))]
     public abstract partial class RegisteredPayload
@@ -1013,8 +624,8 @@ namespace AindJustFramesSchemas.MessageProtocol
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [System.ComponentModel.DefaultPropertyAttribute("Type")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Combinator)]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<HeartbeatPayload>))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<LogPayload>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<AllenNeuralDynamics.AindBehaviorServices.MessageProtocol.HeartbeatPayload>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<AllenNeuralDynamics.AindBehaviorServices.MessageProtocol.LogPayload>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<StartPayload>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<StopPayload>))]
     public partial class MatchRegisteredPayload : Bonsai.Expressions.SingleArgumentExpressionBuilder
@@ -1071,16 +682,6 @@ namespace AindJustFramesSchemas.MessageProtocol
             return System.Reactive.Linq.Observable.Select(source, value => Newtonsoft.Json.JsonConvert.SerializeObject(value, formatting));
         }
 
-        public System.IObservable<string> Process(System.IObservable<HeartbeatPayload> source)
-        {
-            return Process<HeartbeatPayload>(source);
-        }
-
-        public System.IObservable<string> Process(System.IObservable<LogPayload> source)
-        {
-            return Process<LogPayload>(source);
-        }
-
         public System.IObservable<string> Process(System.IObservable<Message> source)
         {
             return Process<Message>(source);
@@ -1115,8 +716,6 @@ namespace AindJustFramesSchemas.MessageProtocol
     [System.ComponentModel.DescriptionAttribute("Deserializes a sequence of JSON strings into data model objects.")]
     [System.ComponentModel.DefaultPropertyAttribute("Type")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<HeartbeatPayload>))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<LogPayload>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Message>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<RegisteredMessages>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<RegisteredPayload>))]
@@ -1127,7 +726,7 @@ namespace AindJustFramesSchemas.MessageProtocol
     
         public DeserializeFromJson()
         {
-            Type = new Bonsai.Expressions.TypeMapping<HeartbeatPayload>();
+            Type = new Bonsai.Expressions.TypeMapping<Message>();
         }
 
         public Bonsai.Expressions.TypeMapping Type { get; set; }

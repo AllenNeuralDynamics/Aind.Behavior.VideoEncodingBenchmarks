@@ -155,7 +155,7 @@
                 </Edges>
               </Workflow>
             </Expression>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p2:RegisteredPayload">
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="p2:RegisteredPayload">
               <rx:Name>BroadcastRequest</rx:Name>
             </Expression>
             <Expression xsi:type="p2:MatchRegisteredPayload" />
@@ -515,7 +515,7 @@
                   <Expression xsi:type="MulticastSubject">
                     <Name>Out</Name>
                   </Expression>
-                  <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p2:RegisteredMessages">
+                  <Expression xsi:type="rx:PublishSubject" TypeArguments="p2:RegisteredMessages">
                     <rx:Name>Out</rx:Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
@@ -823,7 +823,7 @@
                   <Expression xsi:type="MulticastSubject">
                     <Name>Out</Name>
                   </Expression>
-                  <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p2:RegisteredMessages">
+                  <Expression xsi:type="rx:PublishSubject" TypeArguments="p2:RegisteredMessages">
                     <rx:Name>Out</rx:Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
