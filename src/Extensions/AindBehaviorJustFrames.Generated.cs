@@ -41,7 +41,7 @@ namespace AindJustFramesSchemas
     
         public AindJustFramesRig()
         {
-            _aindBehaviorServicesPkgVersion = "0.13.0";
+            _aindBehaviorServicesPkgVersion = "0.13.7";
             _version = "0.5.1";
             _harpBehavior = new HarpBehavior();
             _satelliteRigs = new System.Collections.Generic.List<SatelliteRig>();
@@ -873,7 +873,7 @@ namespace AindJustFramesSchemas
     
         public SatelliteRig()
         {
-            _aindBehaviorServicesPkgVersion = "0.13.0";
+            _aindBehaviorServicesPkgVersion = "0.13.7";
             _version = "0.5.1";
             _zmqProtocolConfig = new NetworkConfig();
             _zmqTriggerConfig = new NetworkConfig();
@@ -1126,8 +1126,8 @@ namespace AindJustFramesSchemas
     
         public Session()
         {
-            _aindBehaviorServicesPkgVersion = "0.13.0";
-            _version = "0.13.0";
+            _aindBehaviorServicesPkgVersion = "0.13.7";
+            _version = "0.13.7";
             _experimenter = new System.Collections.Generic.List<string>();
             _allowDirtyRepo = false;
             _skipHardwareValidation = false;
@@ -2213,8 +2213,8 @@ namespace AindJustFramesSchemas
         public VideoWriterFfmpeg()
         {
             _frameRate = 30;
-            _containerExtension = "mp4";
-            _outputArguments = "-vf \"scale=out_color_matrix=bt709:out_range=full,format=bgr24,scale=out_range=full\" -c:v h264_nvenc -pix_fmt yuv420p -color_range full -colorspace bt709 -color_trc linear -tune hq -preset p4 -rc vbr -cq 12 -b:v 0M -metadata author=\"Allen Institute for Neural Dynamics\" -maxrate 700M -bufsize 350M";
+            _containerExtension = "mkv";
+            _outputArguments = "-vf \"scale=out_range=full,setparams=range=full:colorspace=bt709:color_primaries=bt709:color_trc=linear\" -c:v h264_nvenc -pix_fmt yuv420p -color_range full -colorspace bt709 -color_trc linear -tune hq -preset p3 -rc vbr -cq 18 -b:v 0M -metadata author=\"Allen Institute for Neural Dynamics\" -maxrate 700M -bufsize 350M -f matroska -write_crc32 0";
             _inputArguments = "-colorspace bt709 -color_primaries bt709 -color_range full -color_trc linear";
         }
     

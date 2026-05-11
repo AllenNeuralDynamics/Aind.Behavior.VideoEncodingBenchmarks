@@ -1,17 +1,16 @@
-using Bonsai;
+﻿using Bonsai;
 using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Linq;
 using NetMQ;
-using AindJustFramesSchemas.MessageProtocol;
 
 [Combinator]
 [Description("Tries to parse NetMQFrame as RegisteredMessages and filters out invalid messages")]
 [WorkflowElementCategory(ElementCategory.Combinator)]
 public class TryParseRegisteredMessages
 {
-    public IObservable<RegisteredMessages> Process(IObservable<NetMQFrame> source)
+    public IObservable<AindJustFramesSchemas.MessageProtocol.RegisteredMessages> Process(IObservable<NetMQFrame> source)
     {
         return source
             .Select(frame => frame.ConvertToString())
@@ -19,7 +18,7 @@ public class TryParseRegisteredMessages
             {
                 try
                 {
-                    return Newtonsoft.Json.JsonConvert.DeserializeObject<RegisteredMessages>(messageString);
+                    return Newtonsoft.Json.JsonConvert.DeserializeObject<AindJustFramesSchemas.MessageProtocol.RegisteredMessages>(messageString);
                 }
                 catch
                 {
